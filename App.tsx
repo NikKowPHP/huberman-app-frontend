@@ -15,6 +15,7 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
+import Config from 'react-native-config';
 
 import {
   Colors,
@@ -82,6 +83,7 @@ function App(): React.JSX.Element {
         style={backgroundStyle}>
         <View style={{paddingRight: safePadding}}>
           <Header/>
+          <Text>API Base URL: {Config.API_BASE_URL}</Text>
         </View>
         <View
           style={{

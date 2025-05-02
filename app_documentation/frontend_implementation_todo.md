@@ -28,7 +28,7 @@
     *   `[x]` Set up TypeScript configuration (`tsconfig.json`).
     *   `[x]` Configure basic testing environment (Jest is included, add `@testing-library/react-native`).
     *   `[x]` Establish basic Git workflow (branching strategy defined with backend team).
-    *   `[ ]` Configure environment variables (e.g., using `react-native-config`) for API base URL (local, staging, prod).
+    *   `[x]` Configure environment variables (e.g., using `react-native-config`) for API base URL (local, staging, prod).
 
 *   **Core Structure & Base Components:**
     *   `[ ]` Define base theme (colors, typography, spacing) aligned with Fluent UI and Figma styles (`src/theme`). Apply theme provider if necessary (depends on UI library choice).

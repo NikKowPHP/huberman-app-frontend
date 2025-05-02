@@ -1,4 +1,5 @@
 {
   "name": "hubermanAppFrontend",
-  "displayName": "hubermanAppFrontend"
+  "displayName": "hubermanAppFrontend",
+  "extraDotenv": true
 }
