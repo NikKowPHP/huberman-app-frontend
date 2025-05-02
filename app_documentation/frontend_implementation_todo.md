@@ -23,11 +23,11 @@
         *   `[x]` Secure Storage: `react-native-keychain`.
         *   `[x]` Potentially UI Library: `fluentui-react-native` (if decided upon, see `ui_ux_handoff_integration.md`).
         *   `[x]` API Client: `axios` (or `fetch` wrapper).
-    *   `[ ]` Set up project structure (`src/screens`, `src/components`, `src/navigation`, `src/services`, `src/store`, `src/assets`, `src/hooks`, `src/theme`).
-    *   `[ ]` Configure ESLint & Prettier for code quality and consistency.
-    *   `[ ]` Set up TypeScript configuration (`tsconfig.json`).
-    *   `[ ]` Configure basic testing environment (Jest is included, add `@testing-library/react-native`).
-    *   `[ ]` Establish basic Git workflow (branching strategy defined with backend team).
+    *   `[x]` Set up project structure (`src/screens`, `src/components`, `src/navigation`, `src/services`, `src/store`, `src/assets`, `src/hooks`, `src/theme`).
+    *   `[x]` Configure ESLint & Prettier for code quality and consistency.
+    *   `[x]` Set up TypeScript configuration (`tsconfig.json`).
+    *   `[x]` Configure basic testing environment (Jest is included, add `@testing-library/react-native`).
+    *   `[x]` Establish basic Git workflow (branching strategy defined with backend team).
     *   `[ ]` Configure environment variables (e.g., using `react-native-config`) for API base URL (local, staging, prod).
 
 *   **Core Structure & Base Components:**
