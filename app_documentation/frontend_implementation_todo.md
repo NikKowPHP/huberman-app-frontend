@@ -16,13 +16,13 @@
 ## Phase 1: Project Setup & Foundation
 
 *   **Environment & Tooling:**
-    *   `[ ]` Initialize React Native project (`npx @react-native-community/cli init hubermanAppFrontend --template react-native-template-typescript` recommended).
+    *   `[x]` Initialize React Native project (`npx @react-native-community/cli init hubermanAppFrontend --template react-native-template-typescript` recommended).
     *   `[ ]` Install core dependencies:
-        *   `[ ]` Navigation: `@react-navigation/native`, `@react-navigation/native-stack`, `@react-navigation/bottom-tabs` (or other required navigators).
-        *   `[ ]` State Management: `zustand`.
-        *   `[ ]` Secure Storage: `react-native-keychain`.
-        *   `[ ]` Potentially UI Library: `fluentui-react-native` (if decided upon, see `ui_ux_handoff_integration.md`).
-        *   `[ ]` API Client: `axios` (or `fetch` wrapper).
+        *   `[x]` Navigation: `@react-navigation/native`, `@react-navigation/native-stack`, `@react-navigation/bottom-tabs` (or other required navigators).
+        *   `[x]` State Management: `zustand`.
+        *   `[x]` Secure Storage: `react-native-keychain`.
+        *   `[x]` Potentially UI Library: `fluentui-react-native` (if decided upon, see `ui_ux_handoff_integration.md`).
+        *   `[x]` API Client: `axios` (or `fetch` wrapper).
     *   `[ ]` Set up project structure (`src/screens`, `src/components`, `src/navigation`, `src/services`, `src/store`, `src/assets`, `src/hooks`, `src/theme`).
     *   `[ ]` Configure ESLint & Prettier for code quality and consistency.
     *   `[ ]` Set up TypeScript configuration (`tsconfig.json`).
