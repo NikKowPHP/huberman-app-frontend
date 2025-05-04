@@ -1,6 +1,6 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
-import theme from '../../theme/theme';
+import { useTheme } from '../../theme/ThemeProvider';
 
 interface ButtonProps {
   title: string;
@@ -15,6 +15,25 @@ const Button: React.FC<ButtonProps> = ({
   variant = 'primary',
   disabled = false,
 }) => {
+  const theme = useTheme();
+
+  const styles = StyleSheet.create({
+    button: {
+      paddingVertical: theme.spacing.medium,
+      paddingHorizontal: theme.spacing.large,
+      borderRadius: theme.borderRadius.medium,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    text: {
+      fontSize: theme.typography.body1.fontSize, // Use theme typography
+      fontWeight: theme.typography.weights.semibold, // Use theme typography
+    },
+    disabled: {
+      opacity: 0.6,
+    },
+  });
+
   const getButtonStyle = () => {
     switch (variant) {
       case 'secondary':
@@ -41,8 +60,9 @@ const Button: React.FC<ButtonProps> = ({
           color: theme.colors.primary,
         };
       default:
+        // Use neutralForeground1 for text on brand background for better contrast potentially
         return {
-          color: '#FFFFFF',
+          color: theme.colors.neutralBackground1, // White text on primary/secondary bg
         };
     }
   };
@@ -62,22 +82,5 @@ const Button: React.FC<ButtonProps> = ({
     </TouchableOpacity>
   );
 };
-
-const styles = StyleSheet.create({
-  button: {
-    paddingVertical: theme.spacing.medium,
-    paddingHorizontal: theme.spacing.large,
-    borderRadius: theme.borderRadius.medium,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  text: {
-    fontSize: 16,
-    fontWeight: '600',
-  },
-  disabled: {
-    opacity: 0.6,
-  },
-});
 
 export default Button;

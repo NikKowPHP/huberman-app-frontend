@@ -31,7 +31,7 @@
     *   `[x]` Configure environment variables (e.g., using `react-native-config`) for API base URL (local, staging, prod).
 
 *   **Core Structure & Base Components:**
-    *   `[ ]` Define base theme (colors, typography, spacing) aligned with Fluent UI and Figma styles (`src/theme`). Apply theme provider if necessary (depends on UI library choice).
+    *   `[ ]` Define base theme (colors, typography, spacing) aligned with Fluent UI and Figma styles (`src/theme`). Apply theme provider if necessary (depends on UI library choice). - @cline
     *   `[ ]` (Test) Create foundational reusable components based on early UI designs/Fluent principles (e.g., `Button`, `TextInput`, `Card`, `ScreenWrapper`).
     *   `[ ]` Set up Storybook (optional but recommended) to develop and showcase reusable components in isolation.
     *   `[ ]` Implement root navigation structure (`src/navigation/RootNavigator.tsx`): differentiate between Auth stack and Main App stack based on authentication status.

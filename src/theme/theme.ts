@@ -1,9 +1,121 @@
-import { Theme } from '@fluentui/react-native';
+
+import { TextStyle } from 'react-native';
+
+// Define a specific type for fontWeight based on TextStyle['fontWeight']
+type FontWeight = TextStyle['fontWeight'];
 
 // Define base theme aligned with Fluent UI principles and potential Figma styles
+export interface Theme {
+  colors: {
+    neutralForeground1: string;
+    neutralForeground2: string;
+    neutralForeground3: string;
+    neutralForeground4: string;
+    neutralForegroundDisabled: string;
+
+    neutralBackground1: string;
+    neutralBackground2: string;
+    neutralBackground3: string;
+    neutralBackground4: string;
+    neutralBackgroundDisabled: string;
+
+    brandForeground1: string;
+    brandForeground2: string;
+    brandForeground3: string;
+    brandForeground4: string;
+
+    brandBackground1: string;
+    brandBackground2: string;
+    brandBackground3: string;
+    brandBackground4: string;
+
+    statusDangerBackground1: string;
+    statusSuccessBackground1: string;
+    statusWarningBackground1: string;
+    primary: string;
+    secondary: string;
+  };
+  typography: {
+    sizes: {
+      caption2: number;
+      caption1: number;
+      body2: number;
+      body1: number;
+      subheading2: number;
+      subheading1: number;
+      heading2: number;
+      heading1: number;
+      display: number;
+    };
+    weights: {
+      regular: FontWeight;
+      medium: FontWeight;
+      semibold: FontWeight;
+      bold: FontWeight;
+    };
+    caption2: {
+      fontSize: number;
+      fontWeight: FontWeight;
+    };
+    caption1: {
+      fontSize: number;
+      fontWeight: FontWeight;
+    };
+    body2: {
+      fontSize: number;
+      fontWeight: FontWeight;
+    };
+    body1: {
+      fontSize: number;
+      fontWeight: FontWeight;
+    };
+    subheading2: {
+      fontSize: number;
+      fontWeight: FontWeight;
+    };
+    subheading1: {
+      fontSize: number;
+      fontWeight: FontWeight;
+    };
+    heading2: {
+      fontSize: number;
+      fontWeight: FontWeight;
+    };
+    heading1: {
+      fontSize: number;
+      fontWeight: FontWeight;
+    };
+    display: {
+      fontSize: number;
+      fontWeight: FontWeight;
+    };
+  };
+  spacing: {
+    s1: number;
+    s2: number;
+    s3: number;
+    s4: number;
+    s5: number;
+    s6: number;
+    s7: number;
+    s8: number;
+    s9: number;
+    s10: number;
+    medium: number;
+    large: number;
+  };
+  borderRadius: {
+    none: number;
+    small: number;
+    medium: number;
+    large: number;
+    xLarge: number;
+    circle: number;
+  };
+}
+
 const theme: Theme = {
   colors: {
-    // Fluent UI Neutral Colors
     neutralForeground1: '#201F1E',
     neutralForeground2: '#484644',
     neutralForeground3: '#605E5C',
@@ -26,14 +138,13 @@ const theme: Theme = {
     brandBackground3: '#005A9E',
     brandBackground4: '#193B5B',
 
-    // Add more colors based on Figma and Fluent UI palette as needed
-    // Example: Status colors, accent colors, etc.
     statusDangerBackground1: '#D13438',
     statusSuccessBackground1: '#107D0A',
     statusWarningBackground1: '#F7630C',
+    primary: '#0078D4',
+    secondary: '#106EBE',
   },
   typography: {
-    // Fluent UI Typography Scale
     sizes: {
       caption2: 10,
       caption1: 12,
@@ -46,12 +157,11 @@ const theme: Theme = {
       display: 32,
     },
     weights: {
-      regular: '400',
-      medium: '500',
-      semibold: '600',
-      bold: '700',
+      regular: '400' as FontWeight,
+      medium: '500' as FontWeight,
+      semibold: '600' as FontWeight,
+      bold: '700' as FontWeight,
     },
-    // Define specific text styles based on the scale
     caption2: {
       fontSize: 10,
       fontWeight: '400',
@@ -88,10 +198,8 @@ const theme: Theme = {
       fontSize: 32,
       fontWeight: '700',
     },
-    // Add more typography styles as needed
   },
   spacing: {
-    // Fluent UI Spacing Scale (based on 4px grid)
     s1: 4,
     s2: 8,
     s3: 12,
@@ -102,16 +210,16 @@ const theme: Theme = {
     s8: 32,
     s9: 36,
     s10: 40,
-    // Add more spacing units as needed
+    medium: 4,
+    large: 8,
   },
-  // Add other theme properties like borderRadius, etc.
   borderRadius: {
     none: 0,
     small: 2,
     medium: 4,
     large: 8,
     xLarge: 12,
-    circle: 999, // Example for a fully rounded shape
+    circle: 999,
   },
 };
 

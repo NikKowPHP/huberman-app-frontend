@@ -25,7 +25,8 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-import { ThemeProvider } from '@fluentui/react-native';
+import Button from './src/components/Button/Button';
+import { ThemeProvider } from './src/theme/ThemeProvider';
 import theme from './src/theme/theme';
 
 type SectionProps = PropsWithChildren<{
