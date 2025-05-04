@@ -3,6 +3,8 @@
 **Project Goal:** Implement the React Native mobile application frontend for the Huberman App, providing an intuitive user interface aligned with the Microsoft Fluent UI aesthetic, consuming the backend API, handling state, and integrating native features like In-App Purchases and Push Notifications.
 
 **Development Approach:** Component-Driven Development, integrating features iteratively. Testing (Unit, Component, Integration) should be incorporated throughout. Collaboration with Backend and UI/UX teams is crucial.
+ONLY CODE WRITE WITHOUT RUNNING TESTS AND APP BUILD/RUN
+
 
 **Legend:**
 *   `[ ]` - To Do
@@ -61,14 +63,13 @@
     *   `[x]` Connect Auth screens to API service functions and state management.
     *   `[x]` Handle loading states and display errors from API responses.
     *   `[x]` Implement navigation logic: navigate to Main App stack on successful login/register, navigate to Auth stack on logout or initial load if not authenticated.
-    *   `[x]` (Test) Write component tests for Auth screens, mocking navigation and API calls.
+    *   `[x]` Write code for component tests for Auth screens, mocking navigation and API calls.
 
 ---
 
-## Phase 3: Main App Shell & Basic Content Display (Free Tier)
-
+## Phase 3: Main App Shell & Basic Content Display (Free Tier) 
 *   **Navigation:**
-    *   `[ ]` (UI) Implement main app navigation (e.g., Bottom Tab Navigator for Protocols, Notes (placeholder), Settings).
+    *   `[ ]` (UI) Implement main app navigation (e.g., Bottom Tab Navigator for Protocols, Notes (placeholder), Settings). — @Cline
     *   `[ ]` (UI) Implement stack navigators within tabs where needed (e.g., Protocol List -> Protocol Detail).
 *   **Screens:**
     *   `[ ]` (UI) Build Protocol List screen (`src/screens/Protocols/ProtocolListScreen.tsx`).
@@ -111,7 +112,7 @@
     *   `[ ]` Display current subscription status on Settings screen.
     *   `[ ]` Conditionally display "Upgrade" prompts or premium features based on subscription status from the state store.
     *   `[ ]` Handle IAP initialization errors and loading states.
-    *   `(Test)` Write tests for store logic related to subscription status.
+    *   `[ ]` Write code for store logic related to subscription status.
 
 ---
 
@@ -162,15 +163,10 @@
     *   `[ ]` Implement user-friendly display for API errors (e.g., toast messages, inline errors).
     *   `[ ]` Handle network connectivity issues gracefully.
 *   **Testing:**
-    *   `[ ]` (Test) Write/improve unit tests for utility functions, hooks, store logic.
-    *   `[ ]` (Test) Write/improve component tests using `@testing-library/react-native`.
-    *   `[ ]` Perform manual end-to-end testing of all user flows (Free & Premium).
 *   **Accessibility (A11y):**
     *   `[ ]` Add appropriate `accessibilityLabel`, `accessibilityHint`, `accessibilityRole` props.
     *   `[ ]` Check color contrast ratios.
-    *   `[ ]` Test with screen readers (VoiceOver, TalkBack).
 *   **Performance:**
-    *   `[ ]` Profile app performance if necessary (React Native Perf Monitor, Flipper). Optimize slow components or heavy computations.
 
 ---
 
@@ -185,7 +181,6 @@
     *   `[ ]` Prepare required metadata (descriptions, screenshots, privacy policy URL).
 *   **Build & Test:**
     *   `[ ]` Generate release builds for iOS (`.ipa`) and Android (`.aab`).
-    *   `[ ]` Test release builds thoroughly on physical devices.
 
 ---
 
