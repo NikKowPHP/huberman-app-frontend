@@ -17,7 +17,7 @@
 
 *   **Environment & Tooling:**
     *   `[x]` Initialize React Native project (`npx @react-native-community/cli init hubermanAppFrontend --template react-native-template-typescript` recommended).
-    *   `[ ]` Install core dependencies:
+    *   `[x]` Install core dependencies:
         *   `[x]` Navigation: `@react-navigation/native`, `@react-navigation/native-stack`, `@react-navigation/bottom-tabs` (or other required navigators).
         *   `[x]` State Management: `zustand`.
         *   `[x]` Secure Storage: `react-native-keychain`.
