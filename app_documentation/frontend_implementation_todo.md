@@ -45,23 +45,23 @@
     *   `[x]` (UI) Build Registration screen (`src/screens/Auth/RegisterScreen.tsx`).
     *   `[x]` (UI) Build Forgot Password screen / flow screens.
 *   **API Service:**
-    *   `[ ]` Implement API service functions (`src/services/api/auth.ts`) to call backend endpoints:
-        *   `[ ]` `/register` (API)
-        *   `[ ]` `/login` (API)
-        *   `[ ]` `/logout` (API)
-        *   `[ ]` `/forgot-password`, `/reset-password` (API)
+    *   `[x]` Implement API service functions (`src/services/api/auth.ts`) to call backend endpoints:
+        *   `[x]` `/register` (API)
+        *   `[x]` `/login` (API)
+        *   `[x]` `/logout` (API)
+        *   `[x]` `/forgot-password`, `/reset-password` (API)
 *   **State Management:**
-    *   `[ ]` (Test) Implement Zustand store (`src/store/authStore.ts`) to manage:
-        *   `[ ]` Authentication token (`accessToken`).
-        *   `[ ]` User information (basic profile, `is_premium` flag).
-        *   `[ ]` Authentication status (`isAuthenticated`).
-    *   `[ ]` Implement logic to securely store/retrieve token using `react-native-keychain`.
-    *   `[ ]` Implement actions/logic in the store for `login`, `register`, `logout`.
+    *   `[x]` (Test) Implement Zustand store (`src/store/authStore.ts`) to manage:
+        *   `[x]` Authentication token (`accessToken`).
+        *   `[x]` User information (basic profile, `is_premium` flag).
+        *   `[x]` Authentication status (`isAuthenticated`).
+    *   `[x]` Implement logic to securely store/retrieve token using `react-native-keychain`.
+    *   `[x]` Implement actions/logic in the store for `login`, `register`, `logout`.
 *   **Integration:**
-    *   `[ ]` Connect Auth screens to API service functions and state management.
-    *   `[ ]` Handle loading states and display errors from API responses.
-    *   `[ ]` Implement navigation logic: navigate to Main App stack on successful login/register, navigate to Auth stack on logout or initial load if not authenticated.
-    *   `[ ]` (Test) Write component tests for Auth screens, mocking navigation and API calls.
+    *   `[x]` Connect Auth screens to API service functions and state management.
+    *   `[x]` Handle loading states and display errors from API responses.
+    *   `[x]` Implement navigation logic: navigate to Main App stack on successful login/register, navigate to Auth stack on logout or initial load if not authenticated.
+    *   `[x]` (Test) Write component tests for Auth screens, mocking navigation and API calls.
 
 ---
 

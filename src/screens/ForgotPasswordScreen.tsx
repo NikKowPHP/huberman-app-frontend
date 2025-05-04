@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
+import { forgotPassword } from '../services/api/auth';
 
-interface ForgotPasswordScreenProps {
-  navigation: any;
-}
-
-const ForgotPasswordScreen: React.FC<ForgotPasswordScreenProps> = ({ navigation }) => {
+const ForgotPasswordScreen = () => {
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -17,11 +14,10 @@ const ForgotPasswordScreen: React.FC<ForgotPasswordScreenProps> = ({ navigation 
 
     setLoading(true);
     try {
-      // TODO: Implement actual password reset logic
+      await forgotPassword(email);
       Alert.alert('Success', 'Password reset link sent to your email');
-      navigation.goBack();
-    } catch (error) {
-      Alert.alert('Error', 'Failed to send reset link');
+    } catch (error: any) {
+      Alert.alert('Error', error.message || 'Failed to send reset link');
     } finally {
       setLoading(false);
     }
