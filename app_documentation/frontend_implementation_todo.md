@@ -41,9 +41,9 @@
 ## Phase 2: Authentication Flow (UI & API Integration)
 
 *   **Screens:**
-    *   `[ ]` (UI) Build Login screen (`src/screens/Auth/LoginScreen.tsx`).
-    *   `[ ]` (UI) Build Registration screen (`src/screens/Auth/RegisterScreen.tsx`).
-    *   `[ ]` (UI) Build Forgot Password screen / flow screens.
+    *   `[x]` (UI) Build Login screen (`src/screens/Auth/LoginScreen.tsx`).
+    *   `[x]` (UI) Build Registration screen (`src/screens/Auth/RegisterScreen.tsx`).
+    *   `[x]` (UI) Build Forgot Password screen / flow screens.
 *   **API Service:**
     *   `[ ]` Implement API service functions (`src/services/api/auth.ts`) to call backend endpoints:
         *   `[ ]` `/register` (API)
