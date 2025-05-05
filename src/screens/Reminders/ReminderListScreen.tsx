@@ -1,22 +1,55 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, FlatList, Button, ActivityIndicator } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, NavigationProp } from '@react-navigation/native';
 import useAuthStore from '../../store/authStore';
 import { fetchReminders } from '../../services/api/reminders';
 import { useTheme } from '../../theme/ThemeProvider';
 import UpgradePrompt from '../../components/UpgradePrompt';
+import { ProtocolStackParamList } from '../../navigation/AppStack.d';
+
+type ReminderListScreenNavigationProp = NavigationProp<ProtocolStackParamList, 'ReminderList'>;
 
 const ReminderListScreen = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<ReminderListScreenNavigationProp>();
   const { user } = useAuthStore();
   const [reminders, setReminders] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const theme = useTheme();
 
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    reminderItem: {
+      padding: '3%',
+      borderBottomWidth: 1,
+      borderBottomColor: '#ccc',
+    },
+    centered: {
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    loadingText: {
+      marginTop: 10,
+    },
+    errorText: {
+      color: theme.colors.statusDangerBackground1,
+      fontSize: 16,
+      fontWeight: 'bold',
+    },
+    noRemindersContainer: {
+      flex: 1,
+    },
+  });
+
   useEffect(() => {
     const loadReminders = async () => {
-      if (!user) return;
+      if (!user) {
+        return;
+      }
       try {
         setLoading(true);
         const data = await fetchReminders(user.id);
@@ -44,7 +77,7 @@ const ReminderListScreen = () => {
     return (
       <View style={[styles.container, styles.centered]}>
         <ActivityIndicator size="large" color={theme.colors.primary} />
-        <Text style={{ marginTop: 10 }}>Loading reminders...</Text>
+        <Text style={styles.loadingText}>Loading reminders...</Text>
       </View>
     );
   }
@@ -52,7 +85,7 @@ const ReminderListScreen = () => {
   if (error) {
     return (
       <View style={[styles.container, styles.centered]}>
-        <Text style={{ color: theme.colors.statusDangerBackground1, fontSize: 16, fontWeight: 'bold' }}>{error}</Text>
+        <Text style={styles.errorText}>{error}</Text>
       </View>
     );
   }
@@ -60,7 +93,7 @@ const ReminderListScreen = () => {
   return (
     <View style={styles.container}>
       {reminders.length === 0 ? (
-        <View style={[styles.centered, { flex: 1 }]} accessibilityLabel="No reminders found">
+        <View style={[styles.centered, styles.noRemindersContainer]} accessibilityLabel="No reminders found">
           <Text>No reminders found.</Text>
         </View>
       ) : (
@@ -79,28 +112,11 @@ const ReminderListScreen = () => {
       <Button
         title="Add Reminder"
         onPress={() => {
-          navigation.navigate('CreateEditReminder', { reminder: {} });
+          navigation.navigate('CreateEditReminder', { reminder: undefined as any });
         }}
       />
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  reminderItem: {
-    padding: '3%',
-    borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
-  },
-  centered: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
 
 export default ReminderListScreen;

@@ -2,7 +2,7 @@
 import { Reminder } from '../services/api/reminders';
 
 export type AppStackParamList = {
-  Protocols: undefined;
+  Protocols: { screen?: keyof ProtocolStackParamList };
   Notes: undefined;
   Settings: undefined;
 };

@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, NavigationProp } from '@react-navigation/native';
 import useAuth from '../../store/authStore';
 import { getNotes } from '../../services/api/notes';
 import { Note } from '../../types/note';
+import { RootStackParamList } from '../../navigation/RootNavigator.d';
+
+type NotesScreenNavigationProp = NavigationProp<RootStackParamList, 'App'>;
 
 const NotesScreen: React.FC = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<NotesScreenNavigationProp>();
   const { user } = useAuth();
   const [notes, setNotes] = useState<Note[]>([]);
   const [loading, setLoading] = useState(true);
@@ -25,7 +28,7 @@ const NotesScreen: React.FC = () => {
       fetchNotes();
     } else {
       try {
-        navigation.navigate('Login');
+        navigation.navigate('Auth');
       } catch (error) {
         console.error('Navigation error:', error);
       }

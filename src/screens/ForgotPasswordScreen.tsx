@@ -33,8 +33,8 @@ const ForgotPasswordScreen = () => {
         placeholder="Email"
         value={email}
         onChangeText={setEmail}
-        autoCapitalize="none"
         keyboardType="email-address"
+        autoCapitalize="none"
         accessibilityLabel="Email address"
         accessibilityHint="Enter your email address"
       />

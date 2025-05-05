@@ -2,7 +2,6 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { AppStackParamList, ProtocolStackParamList } from './AppStack.d';
-import { Reminder } from '../services/api/reminders';
 
 // Import screens
 import ProtocolListScreen from '../screens/Protocols/ProtocolListScreen';

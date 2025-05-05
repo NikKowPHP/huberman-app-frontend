@@ -35,27 +35,18 @@ const useBillingStore = create<BillingState>((set) => ({
       console.error('Failed to refresh subscription:', error);
     }
   },
-  initSubscriptionRefresh: (userId: string) => {
-    const handleAppFocus = async () => {
-      try {
-        const subscription = await fetchSubscriptionStatus(userId);
-        set({ subscription });
-      } catch (error) {
-        console.error('Failed to refresh subscription on app focus:', error);
-      }
-    };
-
+  initSubscriptionRefresh: () => {
     // Add event listener for app focus
-    // For React Native, you might use AppState.addEventListener('focus', handleAppFocus);
-    // For web, you might use window.addEventListener('focus', handleAppFocus);
+    // For React Native, you might use AppState.addEventListener('focus', () => refreshSubscription());
+    // For web, you might use window.addEventListener('focus', () => refreshSubscription());
     // This is just a placeholder, the actual implementation will depend on the platform
 
     // Example placeholder for React Native:
     // import { AppState } from 'react-native';
-    // AppState.addEventListener('focus', handleAppFocus);
+    // AppState.addEventListener('focus', () => refreshSubscription());
 
     // Example placeholder for web:
-    // window.addEventListener('focus', handleAppFocus);
+    // window.addEventListener('focus', () => refreshSubscription());
   },
 }));
 

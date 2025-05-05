@@ -1,13 +1,16 @@
 import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, ActivityIndicator, Button } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, NavigationProp } from '@react-navigation/native';
+import { AppStackParamList } from '../../navigation/AppStack.d';
 import useBillingStore from '../..//store/billingStore';
 import useAuthStore from '../../store/authStore'; // Assuming authStore has userId
+
+type SettingsScreenNavigationProp = NavigationProp<AppStackParamList, 'Settings'>;
 
 const SettingsScreen: React.FC = () => {
   const { subscription, isLoading, fetchSubscription, initSubscriptionRefresh } = useBillingStore();
   const { user } = useAuthStore(); // Get user from auth store
-  const navigation = useNavigation();
+  const navigation = useNavigation<SettingsScreenNavigationProp>();
 
   useEffect(() => {
     if (user?.id && !subscription && !isLoading) {
@@ -31,7 +34,7 @@ const SettingsScreen: React.FC = () => {
       )}
       <Button
         title="Reminders"
-        onPress={() => navigation.navigate('ReminderList')}
+        onPress={() => navigation.navigate('Protocols', { screen: 'ReminderList' })}
       />
     </View>
   );

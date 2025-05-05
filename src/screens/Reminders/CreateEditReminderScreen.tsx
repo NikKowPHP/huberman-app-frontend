@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Button, ActivityIndicator } from 'react-native';
 import CustomTextInput from '../../components/TextInput';
 import useAuthStore from '../../store/authStore';
-import { createReminder, updateReminder, Reminder } from '../../services/api/reminders';
+import { createReminder, updateReminder } from '../../services/api/reminders';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { ProtocolStackParamList } from '../../navigation/AppStack.d';
 
@@ -24,7 +24,9 @@ const CreateEditReminderScreen: React.FC<CreateEditReminderScreenProps> = ({ rou
   }, [reminder]);
 
   const handleSave = async () => {
-    if (!user) return;
+    if (!user) {
+      return;
+    }
     setLoading(true);
     setError(null);
     try {
@@ -55,7 +57,7 @@ const CreateEditReminderScreen: React.FC<CreateEditReminderScreenProps> = ({ rou
     return (
       <View style={[styles.container, styles.centered]}>
         <ActivityIndicator size="large" color="#0000ff" />
-        <Text style={{ marginTop: 10 }}>Saving Reminder...</Text>
+        <Text style={styles.savingText}>Saving Reminder...</Text>
       </View>
     );
   }
@@ -63,7 +65,7 @@ const CreateEditReminderScreen: React.FC<CreateEditReminderScreenProps> = ({ rou
   if (error) {
     return (
       <View style={[styles.container, styles.centered]}>
-        <Text style={{ color: 'red' }}>{error}</Text>
+        <Text style={styles.errorText}>{error}</Text>
       </View>
     );
   }
@@ -111,6 +113,12 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginBottom: 10,
     paddingHorizontal: 10,
+  },
+  savingText: {
+    marginTop: 10,
+  },
+  errorText: {
+    color: 'red',
   },
 });
 
