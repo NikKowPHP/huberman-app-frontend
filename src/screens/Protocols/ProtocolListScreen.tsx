@@ -4,6 +4,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { ProtocolStackParamList } from '../../navigation/AppStack.d';
 import { fetchProtocols, Protocol } from '../../services/api/content';
 import { FontAwesome } from '@expo/vector-icons'; // Or any other icon library
+import { useTheme } from '../../theme/ThemeProvider';
 
 type Props = NativeStackScreenProps<ProtocolStackParamList, 'ProtocolList'>;
 
@@ -11,6 +12,7 @@ const ProtocolListScreen: React.FC<Props> = ({ navigation }) => {
   const [protocols, setProtocols] = useState<Protocol[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const theme = useTheme();
 
   useEffect(() => {
     const loadProtocols = async () => {
@@ -32,11 +34,13 @@ const ProtocolListScreen: React.FC<Props> = ({ navigation }) => {
     <TouchableOpacity
       style={styles.item}
       onPress={() => navigation.navigate('ProtocolDetail', { id: item.id })}
+      accessibilityLabel={`Protocol: ${item.title}`}
+      accessibilityHint="View protocol details"
     >
       <View style={styles.itemContent}>
         <Text style={styles.title}>{item.title}</Text>
         {item.isPremium && (
-          <FontAwesome name="star" size={16} color="#FFD700" style={styles.premiumIcon} />
+          <FontAwesome name="star" size={16} color="#FFD700" style={styles.premiumIcon} accessibilityLabel="Premium protocol" />
         )}
       </View>
       <Text style={styles.description}>{item.description}</Text>
@@ -55,19 +59,25 @@ const ProtocolListScreen: React.FC<Props> = ({ navigation }) => {
   if (error) {
     return (
       <View style={[styles.container, styles.centered]}>
-        <Text style={{ color: 'red' }}>{error}</Text>
+        <Text style={{ color: theme.colors.statusDangerBackground1, fontSize: 16, fontWeight: 'bold' }}>{error}</Text>
       </View>
     );
   }
 
   return (
     <View style={styles.container}>
-      <FlatList
-        data={protocols}
-        renderItem={renderProtocolItem}
-        keyExtractor={(item) => item.id}
-        contentContainerStyle={styles.list}
-      />
+      {protocols.length === 0 && !loading && !error ? (
+        <View style={[styles.centered, { flex: 1 }]}>
+          <Text>No protocols found.</Text>
+        </View>
+      ) : (
+        <FlatList
+          data={protocols}
+          renderItem={renderProtocolItem}
+          keyExtractor={(item) => item.id}
+          contentContainerStyle={styles.list}
+        />
+      )}
     </View>
   );
 };
@@ -85,8 +95,8 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   item: {
-    padding: 16,
-    marginBottom: 12,
+    padding: '4%',
+    marginBottom: '3%',
     backgroundColor: '#f8f9fa',
     borderRadius: 8,
   },

@@ -7,6 +7,8 @@ interface ButtonProps {
   onPress: () => void;
   variant?: 'primary' | 'secondary' | 'outline';
   disabled?: boolean;
+  accessibilityLabel?: string;
+  accessibilityHint?: string;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -14,6 +16,8 @@ const Button: React.FC<ButtonProps> = ({
   onPress,
   variant = 'primary',
   disabled = false,
+  accessibilityLabel,
+  accessibilityHint,
 }) => {
   const theme = useTheme();
 
@@ -77,6 +81,8 @@ const Button: React.FC<ButtonProps> = ({
       onPress={onPress}
       disabled={disabled}
       activeOpacity={0.8}
+      accessibilityLabel={accessibilityLabel}
+      accessibilityHint={accessibilityHint}
     >
       <Text style={[styles.text, getTextStyle()]}>{title}</Text>
     </TouchableOpacity>

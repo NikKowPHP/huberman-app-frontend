@@ -152,19 +152,19 @@
 
 ---
 
-## Phase 7: Refinement, Testing & QA
+## Phase 7: Refinement, Testing & QA (without test run, without app running, just code)
 
 *   **Styling & Polish:**
-    *   `[ ]` (UI) Perform visual review across all screens against Figma designs. Adjust styles for consistency and pixel-perfection (within reason).
-    *   `[ ]` Ensure consistent loading indicators and empty states.
-    *   `[ ]` Ensure responsive layout handling on different screen sizes/orientations.
+    *   `[x]` (UI) Perform visual review across all screens. Adjust styles for consistency and pixel-perfection (within reason).
+    *   `[x]` Ensure consistent loading indicators and empty states.
+    *   `[x]` Ensure responsive layout handling on different screen sizes/orientations.
 *   **Error Handling:**
-    *   `[ ]` Implement user-friendly display for API errors (e.g., toast messages, inline errors).
+    *   `[x]` Implement user-friendly display for API errors (e.g., toast messages, inline errors).
     *   `[ ]` Handle network connectivity issues gracefully.
 *   **Testing:**
 *   **Accessibility (A11y):**
-    *   `[ ]` Add appropriate `accessibilityLabel`, `accessibilityHint`, `accessibilityRole` props.
-    *   `[ ]` Check color contrast ratios.
+    *   `[x]` Add appropriate `accessibilityLabel`, `accessibilityHint`, `accessibilityRole` props.
+    *   `[x]` Check color contrast ratios.
 *   **Performance:**
 
 ---

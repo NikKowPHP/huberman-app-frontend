@@ -1,12 +1,45 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, ActivityIndicator, StyleSheet } from 'react-native';
+import { View, Text, TextInput, ActivityIndicator, StyleSheet } from 'react-native';
 import useAuthStore from '../store/authStore';
 import { useNavigation } from '@react-navigation/native';
 import { AuthStackNavigationProp } from '../navigation/AuthStack';
+import { useTheme } from '../theme/ThemeProvider';
+import Button from '../components/Button/Button';
 
 const LoginScreen = () => {
   const navigation = useNavigation<AuthStackNavigationProp>();
   const login = useAuthStore((state) => state.login);
+  const theme = useTheme();
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: 'center',
+      padding: theme.spacing.s4,
+    },
+    title: {
+      fontSize: theme.typography.heading1.fontSize,
+      fontWeight: theme.typography.weights.bold,
+      marginBottom: theme.spacing.s4,
+      textAlign: 'center',
+      color: theme.colors.neutralForeground1,
+    },
+    input: {
+      height: '8%',
+      borderColor: theme.colors.neutralForeground3,
+      borderWidth: 1,
+      marginBottom: theme.spacing.s3,
+      paddingHorizontal: theme.spacing.s2,
+      color: theme.colors.neutralForeground1,
+    },
+    errorText: {
+      color: theme.colors.statusDangerBackground1,
+      marginTop: theme.spacing.s3,
+      textAlign: 'center',
+      fontSize: theme.typography.body1.fontSize,
+      fontWeight: theme.typography.weights.semibold,
+    },
+  });
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -28,7 +61,7 @@ const LoginScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Login</Text>
+      <Text style={styles.title} accessibilityRole="header" accessibilityLabel="Login">Login</Text>
       <TextInput
         style={styles.input}
         placeholder="Email"
@@ -36,6 +69,8 @@ const LoginScreen = () => {
         onChangeText={setEmail}
         keyboardType="email-address"
         autoCapitalize="none"
+        accessibilityLabel="Email address"
+        accessibilityHint="Enter your email address"
       />
       <TextInput
         style={styles.input}
@@ -43,43 +78,20 @@ const LoginScreen = () => {
         value={password}
         onChangeText={setPassword}
         secureTextEntry
+        accessibilityLabel="Password"
+        accessibilityHint="Enter your password"
       />
       {loading ? (
-        <ActivityIndicator size="small" color="#0000ff" />
+        <ActivityIndicator size="small" color={theme.colors.primary} accessibilityLabel="Loading" />
       ) : (
-        <Button title="Login" onPress={handleLogin} disabled={!email || !password} />
+        <Button title="Login" onPress={handleLogin} disabled={!email || !password} accessibilityLabel="Login" accessibilityHint="Press to login"/>
       )}
-      {error ? <Text style={styles.errorText}>{error}</Text> : null}
+      {error ? <Text style={styles.errorText} accessibilityLiveRegion="polite">{error}</Text> : null}
 
-      <Button title="Forgot Password?" onPress={() => navigation.navigate('ForgotPassword')} />
-      <Button title="Don't have an account? Sign Up" onPress={() => navigation.navigate('Signup')} />
+      <Button title="Forgot Password?" onPress={() => navigation.navigate('ForgotPassword')} variant="secondary" accessibilityLabel="Forgot Password" accessibilityHint="Navigate to forgot password screen"/>
+      <Button title="Don't have an account? Sign Up" onPress={() => navigation.navigate('Signup')} variant="secondary" accessibilityLabel="Sign Up" accessibilityHint="Navigate to sign up screen"/>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    padding: 16,
-  },
-  title: {
-    fontSize: 24,
-    marginBottom: 16,
-    textAlign: 'center',
-  },
-  input: {
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginBottom: 12,
-    paddingHorizontal: 8,
-  },
-  errorText: {
-    color: 'red',
-    marginTop: 12,
-    textAlign: 'center',
-  },
-});
 
 export default LoginScreen;
