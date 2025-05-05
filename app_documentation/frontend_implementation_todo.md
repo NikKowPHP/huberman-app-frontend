@@ -8,7 +8,7 @@
 - [x] Settings screen shell
 
 ## Pending Tasks
-- [ ] Subscription flow implementation
+- [x] Subscription flow implementation
 - [ ] Premium features implementation
 - [x] Push notification setup
 - [ ] Final testing and refinements

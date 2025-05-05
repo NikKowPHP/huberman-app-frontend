@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, FlatList, Button, ActivityIndicator } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import useAuthStore from '../../store/authStore';
 import { fetchReminders } from '../../services/api/reminders';
 import { useTheme } from '../../theme/ThemeProvider';
 
 const ReminderListScreen = () => {
+  const navigation = useNavigation();
   const { user } = useAuthStore();
   const [reminders, setReminders] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -75,7 +77,9 @@ const ReminderListScreen = () => {
       )}
       <Button
         title="Add Reminder"
-        onPress={() => {}}
+        onPress={() => {
+          navigation.navigate('CreateEditReminder', { reminder: {} });
+        }}
       />
     </View>
   );

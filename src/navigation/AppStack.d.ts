@@ -9,7 +9,7 @@ export type AppStackParamList = {
 
 export type ProtocolStackParamList = {
   ProtocolList: undefined;
-  ProtocolDetail: { id: string };
+  ProtocolDetail: { protocolId: string };
   ReminderList: undefined;
   CreateEditReminder: { reminder?: Reminder };
 };

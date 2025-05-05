@@ -2,6 +2,7 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { AppStackParamList, ProtocolStackParamList } from './AppStack.d';
+import { Reminder } from '../services/api/reminders';
 
 // Import screens
 import ProtocolListScreen from '../screens/Protocols/ProtocolListScreen';
@@ -9,6 +10,7 @@ import ProtocolDetailScreen from '../screens/Protocols/ProtocolDetailScreen';
 import NotesScreen from '../screens/Notes/NotesScreen';
 import SettingsScreen from '../screens/Settings/SettingsScreen';
 import ReminderListScreen from '../screens/Reminders/ReminderListScreen';
+import CreateEditReminderScreen from '../screens/Reminders/CreateEditReminderScreen';
 
 const Tab = createBottomTabNavigator<AppStackParamList>();
 const ProtocolStack = createNativeStackNavigator<ProtocolStackParamList>();
@@ -19,6 +21,7 @@ const ProtocolStackScreen = () => {
       <ProtocolStack.Screen name="ProtocolList" component={ProtocolListScreen} />
       <ProtocolStack.Screen name="ProtocolDetail" component={ProtocolDetailScreen} />
       <ProtocolStack.Screen name="ReminderList" component={ReminderListScreen} />
+      <ProtocolStack.Screen name="CreateEditReminder" component={CreateEditReminderScreen} />
     </ProtocolStack.Navigator>
   );
 };

@@ -33,7 +33,7 @@ const ProtocolListScreen: React.FC<Props> = ({ navigation }) => {
   const renderProtocolItem = ({ item }: { item: Protocol }) => (
     <TouchableOpacity
       style={styles.item}
-      onPress={() => navigation.navigate('ProtocolDetail', { id: item.id })}
+      onPress={() => navigation.navigate('ProtocolDetail', { protocolId: item.id })}
       accessibilityLabel={`Protocol: ${item.title}`}
       accessibilityHint="View protocol details"
     >

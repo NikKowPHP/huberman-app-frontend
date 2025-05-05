@@ -12,7 +12,7 @@ type Props = NativeStackScreenProps<ProtocolStackParamList, 'ProtocolDetail'>;
 type ProtocolDetailNavigationProp = NativeStackNavigationProp<ProtocolStackParamList, 'ProtocolDetail'>;
 
 const ProtocolDetailScreen: React.FC<Props> = ({ route }) => {
-  const { id } = route.params;
+  const { protocolId } = route.params;
   const [protocol, setProtocol] = useState<ProtocolDetail | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -24,7 +24,7 @@ const ProtocolDetailScreen: React.FC<Props> = ({ route }) => {
     const loadProtocolDetails = async () => {
       try {
         const isPremiumUser = user?.isPremium || subscription?.status === 'active';
-        const data = await fetchProtocolDetails(id, isPremiumUser);
+        const data = await fetchProtocolDetails(protocolId, isPremiumUser);
         setProtocol(data);
       } catch (err: any) {
         setError('Failed to fetch protocol details.');
@@ -35,7 +35,7 @@ const ProtocolDetailScreen: React.FC<Props> = ({ route }) => {
     };
 
     loadProtocolDetails();
-  }, [id, user?.isPremium, subscription?.status]);
+  }, [protocolId, user, subscription]);
 
   if (loading) {
     return (

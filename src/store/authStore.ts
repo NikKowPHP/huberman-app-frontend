@@ -2,6 +2,8 @@ import { create } from 'zustand';
 import * as Keychain from 'react-native-keychain';
 import { sendDeviceToken } from '../services/api/user';
 import messaging from '@react-native-firebase/messaging';
+import { login as loginApi, register as registerApi, logout as logoutApi } from '../services/api/auth';
+import useBillingStore from './billingStore';
 
 interface User {
   id: string;
@@ -27,18 +29,19 @@ const useAuthStore = create<AuthState>((set) => ({
 
   login: async (email, password) => {
     try {
-      const response = await fetch('/api/login', {
-        method: 'POST',
-        body: JSON.stringify({ email, password })
-      });
-      const data = await response.json();
+      const data = await loginApi({ email, password });
 
       await Keychain.setGenericPassword('authToken', data.accessToken);
 
       set({
         accessToken: data.accessToken,
-        user: data.user,
-        isAuthenticated: true
+        user: {
+          id: data.user.id,
+          name: data.user.name,
+          email: data.user.email,
+          isPremium: data.user.isPremium,
+        },
+        isAuthenticated: true,
       });
 
       const fcmToken = await messaging().getToken();
@@ -53,18 +56,19 @@ const useAuthStore = create<AuthState>((set) => ({
 
   register: async (email, password, name) => {
     try {
-      const response = await fetch('/api/register', {
-        method: 'POST',
-        body: JSON.stringify({ email, password, name })
-      });
-      const data = await response.json();
+      const data = await registerApi({ email, password, name });
 
       await Keychain.setGenericPassword('authToken', data.accessToken);
 
       set({
         accessToken: data.accessToken,
-        user: data.user,
-        isAuthenticated: true
+        user: {
+          id: data.user.id,
+          name: data.user.name,
+          email: data.user.email,
+          isPremium: data.user.isPremium,
+        },
+        isAuthenticated: true,
       });
 
       const fcmToken = await messaging().getToken();
@@ -79,7 +83,7 @@ const useAuthStore = create<AuthState>((set) => ({
 
   logout: async () => {
     try {
-      await fetch('/api/logout', { method: 'POST' });
+      await logoutApi();
       await Keychain.resetGenericPassword();
       set({
         accessToken: null,
@@ -107,5 +111,21 @@ const useAuthStore = create<AuthState>((set) => ({
     }
   }
 }));
+
+useAuthStore.subscribe((state) => {
+  const { user } = state;
+  if (user) {
+    const billingStore = useBillingStore.getState();
+    const { subscription } = billingStore;
+    if (subscription) {
+      useAuthStore.setState({
+        user: {
+          ...user,
+          isPremium: subscription.status === 'active',
+        },
+      });
+    }
+  }
+});
 
 export default useAuthStore;
