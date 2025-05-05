@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, ActivityIndicator, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ActivityIndicator, ScrollView, Button } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { NativeStackNavigationProp, NativeStackScreenProps } from '@react-navigation/native-stack';
+import { useNavigation } from '@react-navigation/native';
 import { ProtocolStackParamList } from '../../navigation/AppStack.d';
 import { fetchProtocolDetails, ProtocolDetail } from '../../services/api/content';
 import useAuthStore from '../../store/authStore';
+import useBillingStore from '../../store/billingStore';
 
 type Props = NativeStackScreenProps<ProtocolStackParamList, 'ProtocolDetail'>;
+type ProtocolDetailNavigationProp = NativeStackNavigationProp<ProtocolStackParamList, 'ProtocolDetail'>;
 
 const ProtocolDetailScreen: React.FC<Props> = ({ route }) => {
   const { id } = route.params;
@@ -14,11 +17,14 @@ const ProtocolDetailScreen: React.FC<Props> = ({ route }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const { user } = useAuthStore();
+  const { subscription } = useBillingStore();
+  const navigation = useNavigation<ProtocolDetailNavigationProp>();
 
   useEffect(() => {
     const loadProtocolDetails = async () => {
       try {
-        const data = await fetchProtocolDetails(id);
+        const isPremiumUser = user?.isPremium || subscription?.status === 'active';
+        const data = await fetchProtocolDetails(id, isPremiumUser);
         setProtocol(data);
       } catch (err: any) {
         setError('Failed to fetch protocol details.');
@@ -29,7 +35,7 @@ const ProtocolDetailScreen: React.FC<Props> = ({ route }) => {
     };
 
     loadProtocolDetails();
-  }, [id]);
+  }, [id, user?.isPremium, subscription?.status]);
 
   if (loading) {
     return (
@@ -85,6 +91,10 @@ const ProtocolDetailScreen: React.FC<Props> = ({ route }) => {
             ))}
           </View>
         )}
+        <Button
+          title="Reminders"
+          onPress={() => navigation.navigate('ReminderList')}
+        />
 
         {user?.isPremium && protocol.references && protocol.references.length > 0 && (
           <View style={styles.section}>

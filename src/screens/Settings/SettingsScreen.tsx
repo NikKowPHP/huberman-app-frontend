@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
-import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
+import { View, Text, StyleSheet, ActivityIndicator, Button } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import useBillingStore from '../..//store/billingStore';
 import useAuthStore from '../../store/authStore'; // Assuming authStore has userId
 
 const SettingsScreen: React.FC = () => {
   const { subscription, isLoading, fetchSubscription, initSubscriptionRefresh } = useBillingStore();
   const { user } = useAuthStore(); // Get user from auth store
+  const navigation = useNavigation();
 
   useEffect(() => {
     if (user?.id && !subscription && !isLoading) {
@@ -27,6 +29,10 @@ const SettingsScreen: React.FC = () => {
       ) : (
         <Text>No active subscription.</Text>
       )}
+      <Button
+        title="Reminders"
+        onPress={() => navigation.navigate('ReminderList')}
+      />
     </View>
   );
 };

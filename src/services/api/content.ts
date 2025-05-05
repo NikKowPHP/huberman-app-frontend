@@ -31,9 +31,13 @@ export const fetchProtocols = async (): Promise<Protocol[]> => {
   }
 };
 
-export const fetchProtocolDetails = async (id: string): Promise<ProtocolDetail> => {
+export const fetchProtocolDetails = async (id: string, isPremium: boolean = false): Promise<ProtocolDetail> => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/protocols/${id}`);
+    const response = await axios.get(`${API_BASE_URL}/protocols/${id}`, {
+      params: {
+        isPremium: isPremium,
+      },
+    });
     return response.data;
   } catch (error) {
     throw error;

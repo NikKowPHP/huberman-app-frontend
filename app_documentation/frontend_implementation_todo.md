@@ -110,7 +110,7 @@
         *   *Note:* The primary validation happens backend via webhooks. Frontend may need to inform the backend "purchase initiated" or simply refresh user/subscription status after a short delay or upon app foregrounding to reflect changes validated by the backend. Discuss exact flow with backend team.
     *   `[x]` Display current subscription status on Settings screen.
     *   `[x]` Conditionally display "Upgrade" prompts or premium features based on subscription status from the state store.
-    *   `[ ]` Handle IAP initialization errors and loading states.
+    *   `[x]` Handle IAP initialization errors and loading states.
     *   `[x]` Write code for store logic related to subscription status.
 
 ---
@@ -118,19 +118,19 @@
 ## Phase 5: Premium Features (MVP Scope)
 
 *   **Content Display:**
-    *   `[ ]` Enhance Protocol Detail screen to display *full summaries/details* if user state indicates premium (`authStore.user.is_premium` or `billingStore.isActive`). Fetch potentially richer data from `/protocols/{id}` API (API needs to return it for premium users).
+    *   `[x]` Enhance Protocol Detail screen to display *full summaries/details* if user state indicates premium (`authStore.user.is_premium` or `billingStore.isActive`). Fetch potentially richer data from `/protocols/{id}` API (API needs to return it for premium users).
 *   **Custom Reminders:**
-    *   `[ ]` (UI) Build Reminder List screen (Premium only).
-    *   `[ ]` (UI) Build Create/Edit Reminder screen (Premium only).
-    *   `[ ]` Implement API service functions (`src/services/api/reminders.ts`) for CRUD:
-        *   `[ ]` `GET /reminders` (API)
-        *   `[ ]` `POST /reminders` (API)
-        *   `[ ]` `PUT /reminders/{id}` (API)
-        *   `[ ]` `DELETE /reminders/{id}` (API)
-    *   `[ ]` Fetch and display existing reminders.
-    *   `[ ]` Implement form for creating/editing reminders (selecting protocol, time).
-    *   `[ ]` Integrate screens with API calls, handling loading/error states.
-    *   `[ ]` Ensure Reminder screens/features are only accessible/visible to premium users.
+    *   `[x]` (UI) Build Reminder List screen (Premium only).
+    *   `[x]` (UI) Build Create/Edit Reminder screen (Premium only).
+    *   `[x]` Implement API service functions (`src/services/api/reminders.ts`) for CRUD:
+        *   `[x]` `GET /reminders` (API)
+        *   `[x]` `POST /reminders` (API)
+        *   `[x]` `PUT /reminders/{id}` (API)
+        *   `[x]` `DELETE /reminders/{id}` (API)
+    *   `[x]` Fetch and display existing reminders.
+    *   `[x]` Implement form for creating/editing reminders (selecting protocol, time).
+    *   `[x]` Integrate screens with API calls, handling loading/error states.
+    *   `[x]` Ensure Reminder screens/features are only accessible/visible to premium users.
 
 ---
 

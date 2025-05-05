@@ -1,4 +1,5 @@
 // Type definitions for the App Stack (Bottom Tab Navigator)
+import { Reminder } from '../services/api/reminders';
 
 export type AppStackParamList = {
   Protocols: undefined;
@@ -9,6 +10,8 @@ export type AppStackParamList = {
 export type ProtocolStackParamList = {
   ProtocolList: undefined;
   ProtocolDetail: { id: string };
+  ReminderList: undefined;
+  CreateEditReminder: { reminder?: Reminder };
 };
 
 export type NoteStackParamList = {
