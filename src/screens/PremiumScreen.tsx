@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, ActivityIndicator, ScrollView, Alert, Platform } from 'react-native';
 import { fetchPlans } from '../services/api/billing';
 import { Plan } from '../types/billing';
-import Button from '../components/Button/Button';
 import * as RNIap from 'react-native-iap';
+import Button from '../components/Button/Button';
 import Card from '../components/Card';
 
 const itemSkus = Platform.select({
@@ -79,6 +79,7 @@ const PremiumScreen: React.FC = () => {
       <Text style={styles.title}>Go Premium</Text>
       <Text style={styles.description}>Unlock all features with a premium subscription.</Text>
 
+      {/* TODO: Optimize map and find performance */}
       {plans.map((plan) => {
         const product = products.find(p => p.productId === plan.id);
         if (!product) return null;
@@ -88,7 +89,13 @@ const PremiumScreen: React.FC = () => {
             <Text style={styles.planName}>{plan.name}</Text>
             <Text style={styles.planPrice}>{product.localizedPrice}</Text>
             <Text style={styles.planDescription}>{plan.description}</Text>
-            <Button title={`Subscribe to ${plan.name}`} onPress={() => requestSubscription(product.productId)} />
+            <Button
+              title={`Subscribe to ${plan.name}`}
+              onPress={() => requestSubscription(product.productId)}
+              accessibilityLabel={`Subscribe to ${plan.name}`}
+              accessibilityHint={`Subscribe to the ${plan.name} plan`}
+              accessibilityRole="button"
+            />
           </Card>
         );
       })}

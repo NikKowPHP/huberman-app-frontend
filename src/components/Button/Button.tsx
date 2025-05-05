@@ -9,6 +9,7 @@ interface ButtonProps {
   disabled?: boolean;
   accessibilityLabel?: string;
   accessibilityHint?: string;
+  accessibilityRole?: 'button' | 'link' | 'header' | 'summary' | 'image' | 'adjustable' | 'none';
 }
 
 const Button: React.FC<ButtonProps> = ({

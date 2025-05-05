@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, Text, Button } from 'react-native';
-import { useAuthStore } from '../store/authStore';
+import { View, Text } from 'react-native';
+import useAuthStore from '../store/authStore';
+import Button from '../components/Button/Button';
 
 const HomeScreen = () => {
   const { logout } = useAuthStore();
@@ -8,7 +9,13 @@ const HomeScreen = () => {
   return (
     <View>
       <Text>Welcome to the App!</Text>
-      <Button title="Logout" onPress={logout} />
+      <Button
+        title="Logout"
+        onPress={logout}
+        accessibilityLabel="Logout"
+        accessibilityHint="Logout of the app"
+        accessibilityRole="button"
+      />
     </View>
   );
 };

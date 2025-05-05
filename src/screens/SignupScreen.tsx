@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, Button, ActivityIndicator, StyleSheet } from 'react-native';
+import { View, Text, ActivityIndicator, StyleSheet } from 'react-native';
 import CustomTextInput from '../components/TextInput';
+import Button from '../components/Button/Button';
 import useAuthStore from '../store/authStore';
 import { useNavigation } from '@react-navigation/native';
 import { AuthStackNavigationProp } from '../navigation/AuthStack';
@@ -56,11 +57,24 @@ const SignupScreen = () => {
       {loading ? (
         <ActivityIndicator size="small" color="#0000ff" />
       ) : (
-        <Button title="Sign Up" onPress={handleSignup} disabled={!name || !email || !password} />
+        <Button
+          title="Sign Up"
+          onPress={handleSignup}
+          disabled={!name || !email || !password}
+          accessibilityLabel="Sign Up"
+          accessibilityHint="Create a new account"
+          accessibilityRole="button"
+        />
       )}
       {error ? <Text style={styles.errorText}>{error}</Text> : null}
 
-      <Button title="Already have an account? Login" onPress={() => navigation.navigate('Login')} />
+      <Button
+        title="Already have an account? Login"
+        onPress={() => navigation.navigate('Login')}
+        accessibilityLabel="Login"
+        accessibilityHint="Navigate to the login screen"
+        accessibilityRole="button"
+      />
     </View>
   );
 };

@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, FlatList, TouchableOpacity, ActivityIndicator }
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { ProtocolStackParamList } from '../../navigation/AppStack.d';
 import { fetchProtocols, Protocol } from '../../services/api/content';
-import { FontAwesome } from '@expo/vector-icons'; // Or any other icon library
+import { FontAwesome } from '@expo/vector-icons';
 import { useTheme } from '../../theme/ThemeProvider';
 
 type Props = NativeStackScreenProps<ProtocolStackParamList, 'ProtocolList'>;
@@ -13,6 +13,43 @@ const ProtocolListScreen: React.FC<Props> = ({ navigation }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const theme = useTheme();
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: theme.colors.neutralBackground1,
+    },
+    centered: {
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    list: {
+      padding: 16,
+    },
+    item: {
+      padding: '4%',
+      marginBottom: '3%',
+      backgroundColor: theme.colors.neutralBackground3,
+      borderRadius: 8,
+    },
+    itemContent: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+    },
+    title: {
+      fontSize: 16,
+      fontWeight: 'bold',
+      marginBottom: 4,
+    },
+    description: {
+      fontSize: 14,
+      color: theme.colors.neutralForeground2,
+    },
+    premiumIcon: {
+      marginLeft: 8,
+    },
+  });
 
   useEffect(() => {
     const loadProtocols = async () => {
@@ -40,7 +77,7 @@ const ProtocolListScreen: React.FC<Props> = ({ navigation }) => {
       <View style={styles.itemContent}>
         <Text style={styles.title}>{item.title}</Text>
         {item.isPremium && (
-          <FontAwesome name="star" size={16} color="#FFD700" style={styles.premiumIcon} accessibilityLabel="Premium protocol" />
+          <FontAwesome name="star" size={16} color={theme.colors.brandForeground1} style={styles.premiumIcon} accessibilityLabel="Premium protocol" />
         )}
       </View>
       <Text style={styles.description}>{item.description}</Text>
@@ -50,7 +87,7 @@ const ProtocolListScreen: React.FC<Props> = ({ navigation }) => {
   if (loading) {
     return (
       <View style={[styles.container, styles.centered]}>
-        <ActivityIndicator size="large" color="#0000ff" />
+        <ActivityIndicator size="large" color={theme.colors.primary} />
         <Text style={{ marginTop: 10 }}>Loading Protocols...</Text>
       </View>
     );
@@ -71,6 +108,7 @@ const ProtocolListScreen: React.FC<Props> = ({ navigation }) => {
           <Text>No protocols found.</Text>
         </View>
       ) : (
+        // TODO: Optimize FlatList performance
         <FlatList
           data={protocols}
           renderItem={renderProtocolItem}
@@ -81,42 +119,5 @@ const ProtocolListScreen: React.FC<Props> = ({ navigation }) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  centered: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  list: {
-    padding: 16,
-  },
-  item: {
-    padding: '4%',
-    marginBottom: '3%',
-    backgroundColor: '#f8f9fa',
-    borderRadius: 8,
-  },
-  itemContent: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  title: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginBottom: 4,
-  },
-  description: {
-    fontSize: 14,
-    color: '#6c757d',
-  },
-  premiumIcon: {
-    marginLeft: 8,
-  },
-});
 
 export default ProtocolListScreen;

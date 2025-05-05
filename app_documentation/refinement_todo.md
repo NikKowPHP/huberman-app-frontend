@@ -31,11 +31,11 @@ This list incorporates the identified gaps and areas needing further work to ach
 [x] Code Upgrade Prompts: Add the conditional rendering logic ({user.isPremium ? <PremiumFeature /> : <UpgradePrompt />}) and basic UpgradePrompt component structure in relevant screens (e.g., ProtocolDetail, ReminderList).
 [x] Code Missing Base Components: Create the TSX files and basic structure for TextInput, Card, ScreenWrapper components in src/components/ based on Fluent UI design principles described in documentation, if required by final UI specifications.
 3. Error Handling & Edge Cases (Code Logic):
-[ ] Code Network Error Handling Structure: Add try...catch blocks around API calls. Implement basic structure for checking network status (e.g., placeholder function call checkNetworkStatus()) and conditional logic to handle offline scenarios within service functions or components.
-[ ] Standardize API Error Handling Code: Review API call sites (.catch blocks) and implement consistent logic for extracting error messages and updating component/store state to reflect errors. Define helper functions if needed.
+[x] Code Network Error Handling Structure: Add try...catch blocks around API calls. Implement basic structure for checking network status (e.g., placeholder function call checkNetworkStatus()) and conditional logic to handle offline scenarios within service functions or components.
+[x] Standardize API Error Handling Code: Review API call sites (.catch blocks) and implement consistent logic for extracting error messages and updating component/store state to reflect errors. Define helper functions if needed.
 4. Testing Preparation (Code Setup):
-[ ] Write Test File Structure: Create the necessary *.test.tsx files for major screens and components. Add basic Jest describe and it blocks as placeholders for future test implementation.
-[ ] Set up Mocking: Configure Jest setup files (jest.setup.js if needed) to mock native modules (react-native-keychain, @react-native-firebase/messaging, react-native-iap) and potentially global fetch/axios for predictable testing later.
+[x] Write Test File Structure: Create the necessary *.test.tsx files for major screens and components. Add basic Jest describe and it blocks as placeholders for future test implementation.
+[x] Set up Mocking: Configure Jest setup files (jest.setup.js if needed) to mock native modules (react-native-keychain, @react-native-firebase/messaging, react-native-iap) and potentially global fetch/axios for predictable testing later.
 5. Refinement & Productionization (Code Review & Setup):
 [ ] Accessibility (A11y) Props: Review component code and add missing accessibilityLabel, accessibilityHint, accessibilityRole props to all interactive elements based on their function.
 [ ] Performance Code Review: Statically review code for potential performance issues (e.g., unnecessary re-renders, large list rendering without optimization like FlatList, heavy computations on the main thread). Add comments (// TODO: Optimize) for areas needing profiling later.

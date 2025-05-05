@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
-import { View, Text, StyleSheet, ActivityIndicator, Button } from 'react-native';
+import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
+import Button from '../../components/Button/Button';
 import { AppStackParamList } from '../../navigation/AppStack.d';
 import useBillingStore from '../..//store/billingStore';
 import useAuthStore from '../../store/authStore'; // Assuming authStore has userId
@@ -35,6 +36,9 @@ const SettingsScreen: React.FC = () => {
       <Button
         title="Reminders"
         onPress={() => navigation.navigate('Protocols', { screen: 'ReminderList' })}
+        accessibilityLabel="Reminders"
+        accessibilityHint="Navigate to the reminders list"
+        accessibilityRole="button"
       />
     </View>
   );

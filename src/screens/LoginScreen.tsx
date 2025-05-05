@@ -86,7 +86,7 @@ const LoginScreen = () => {
       {loading ? (
         <ActivityIndicator size="small" color={theme.colors.primary} accessibilityLabel="Loading" />
       ) : (
-        <Button title="Login" onPress={handleLogin} disabled={!email || !password} accessibilityLabel="Login" accessibilityHint="Press to login"/>
+        <Button title="Login" onPress={handleLogin} disabled={!email || !password} accessibilityLabel="Login" accessibilityHint="Press to login" accessibilityRole="button" />
       )}
       {error ? <Text style={styles.errorText} accessibilityLiveRegion="polite">{error}</Text> : null}
 

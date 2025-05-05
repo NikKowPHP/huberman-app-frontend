@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Button, ActivityIndicator } from 'react-native';
+import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
 import CustomTextInput from '../../components/TextInput';
+import Button from '../../components/Button/Button';
 import useAuthStore from '../../store/authStore';
 import { createReminder, updateReminder } from '../../services/api/reminders';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { ProtocolStackParamList } from '../../navigation/AppStack.d';
+import { useTheme } from '../../theme/ThemeProvider';
 
 type CreateEditReminderScreenProps = NativeStackScreenProps<ProtocolStackParamList, 'CreateEditReminder'>;
 
@@ -15,6 +17,39 @@ const CreateEditReminderScreen: React.FC<CreateEditReminderScreenProps> = ({ rou
   const [time, setTime] = useState(route.params?.reminder?.time || ''); // e.g., "HH:MM"
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const theme = useTheme();
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: 20,
+    },
+    centered: {
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    title: {
+      fontSize: 24,
+      fontWeight: 'bold',
+      marginBottom: 20,
+    },
+    input: {
+      width: '100%',
+      height: 40,
+      borderColor: theme.colors.neutralForeground3,
+      borderWidth: 1,
+      marginBottom: 10,
+      paddingHorizontal: 10,
+    },
+    savingText: {
+      marginTop: 10,
+    },
+    errorText: {
+      color: theme.colors.statusDangerBackground1,
+    },
+  });
 
   useEffect(() => {
     if (reminder) {
@@ -56,7 +91,7 @@ const CreateEditReminderScreen: React.FC<CreateEditReminderScreenProps> = ({ rou
   if (loading) {
     return (
       <View style={[styles.container, styles.centered]}>
-        <ActivityIndicator size="large" color="#0000ff" />
+        <ActivityIndicator size="large" color={theme.colors.primary} />
         <Text style={styles.savingText}>Saving Reminder...</Text>
       </View>
     );
@@ -85,41 +120,15 @@ const CreateEditReminderScreen: React.FC<CreateEditReminderScreenProps> = ({ rou
         value={time}
         onChangeText={setTime}
       />
-      <Button title="Save Reminder" onPress={handleSave} />
+      <Button
+        title="Save Reminder"
+        onPress={handleSave}
+        accessibilityLabel="Save Reminder"
+        accessibilityHint="Save the reminder"
+        accessibilityRole="button"
+      />
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 20,
-  },
-  centered: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-  },
-  input: {
-    width: '100%',
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginBottom: 10,
-    paddingHorizontal: 10,
-  },
-  savingText: {
-    marginTop: 10,
-  },
-  errorText: {
-    color: 'red',
-  },
-});
 
 export default CreateEditReminderScreen;

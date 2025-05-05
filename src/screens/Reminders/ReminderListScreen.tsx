@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, FlatList, Button, ActivityIndicator } from 'react-native';
+import { View, Text, StyleSheet, FlatList, ActivityIndicator } from 'react-native';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
+import Button from '../../components/Button/Button';
 import useAuthStore from '../../store/authStore';
 import { fetchReminders } from '../../services/api/reminders';
 import { useTheme } from '../../theme/ThemeProvider';
@@ -26,7 +27,7 @@ const ReminderListScreen = () => {
     reminderItem: {
       padding: '3%',
       borderBottomWidth: 1,
-      borderBottomColor: '#ccc',
+      borderBottomColor: theme.colors.neutralForeground3,
     },
     centered: {
       justifyContent: 'center',
@@ -97,6 +98,7 @@ const ReminderListScreen = () => {
           <Text>No reminders found.</Text>
         </View>
       ) : (
+        // TODO: Optimize FlatList performance
         <FlatList
           data={reminders}
           keyExtractor={(item, index) => index.toString()}
@@ -114,6 +116,9 @@ const ReminderListScreen = () => {
         onPress={() => {
           navigation.navigate('CreateEditReminder', { reminder: undefined as any });
         }}
+        accessibilityLabel="Add Reminder"
+        accessibilityHint="Navigate to create a new reminder"
+        accessibilityRole="button"
       />
     </View>
   );

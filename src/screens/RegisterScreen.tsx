@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { View, Text, Button, StyleSheet, Alert } from 'react-native';
+import { View, Text, StyleSheet, Alert } from 'react-native';
 import CustomTextInput from '../components/TextInput';
+import Button from '../components/Button/Button';
 import useAuthStore from '../store/authStore';
+import { useTheme } from '../theme/ThemeProvider';
 
 interface RegisterScreenProps {
   navigation: any;
@@ -13,6 +15,7 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const theme = useTheme();
 
   const handleRegister = async () => {
     if (!email || !password) {
@@ -30,6 +33,36 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({ navigation }) => {
       setLoading(false);
     }
   };
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      padding: 20,
+      justifyContent: 'center',
+      backgroundColor: theme.colors.neutralBackground1,
+    },
+    title: {
+      fontSize: 24,
+      marginBottom: 20,
+      textAlign: 'center',
+      color: theme.colors.neutralForeground1,
+    },
+    input: {
+      height: 50,
+      borderColor: theme.colors.neutralForeground3,
+      borderWidth: 1,
+      marginBottom: 15,
+      paddingHorizontal: 15,
+      borderRadius: 5,
+      fontSize: 16,
+      color: theme.colors.neutralForeground1,
+    },
+    errorText: {
+      color: theme.colors.statusDangerBackground1,
+      marginTop: 12,
+      textAlign: 'center',
+    },
+  });
 
   return (
     <View style={styles.container}>
@@ -64,37 +97,15 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({ navigation }) => {
         autoCapitalize="none"
       />
       <Button 
-        title={loading ? "Loading..." : "Register"} 
-        onPress={handleRegister} 
+        title={loading ? 'Loading...' : 'Register'}
+        onPress={handleRegister}
         disabled={loading}
+        accessibilityLabel='Register'
+        accessibilityHint='Create a new account'
+        accessibilityRole='button'
       />
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-    justifyContent: 'center',
-    backgroundColor: '#fff',
-  },
-  title: {
-    fontSize: 24,
-    marginBottom: 20,
-    textAlign: 'center',
-    color: '#333',
-  },
-  input: {
-    height: 50,
-    borderColor: '#ddd',
-    borderWidth: 1,
-    marginBottom: 15,
-    paddingHorizontal: 15,
-    borderRadius: 5,
-    fontSize: 16,
-    color: '#333',
-  },
-});
 
 export default RegisterScreen;
