@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, ActivityIndicator, ScrollView } from 'react-native';
+import { FontAwesome } from '@expo/vector-icons';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { ProtocolStackParamList } from '../../navigation/AppStack.d';
 import { fetchProtocolDetails, ProtocolDetail } from '../../services/api/content';
@@ -56,7 +57,12 @@ const ProtocolDetailScreen: React.FC<Props> = ({ route }) => {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.content}>
-        <Text style={styles.title}>{protocol.title}</Text>
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <Text style={styles.title}>{protocol.title}</Text>
+          {protocol.isPremium && (
+            <FontAwesome name="star" size={16} color="#FFD700" style={{marginLeft: 8}} />
+          )}
+        </View>
         <Text style={styles.description}>{protocol.description}</Text>
         <Text style={styles.meta}>Duration: {protocol.duration}</Text>
         <Text style={styles.meta}>Category: {protocol.category}</Text>
