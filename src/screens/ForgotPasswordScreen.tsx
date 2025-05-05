@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
+import { View, Text, Button, StyleSheet, Alert } from 'react-native';
+import CustomTextInput from '../components/TextInput';
 import { forgotPassword } from '../services/api/auth';
 
 const ForgotPasswordScreen = () => {
@@ -27,15 +28,15 @@ const ForgotPasswordScreen = () => {
     <View style={styles.container}>
       <Text style={styles.title}>Reset Password</Text>
       <Text style={styles.subtitle}>Enter your email to receive a reset link</Text>
-      <TextInput
+      <CustomTextInput
         style={styles.input}
         placeholder="Email"
         value={email}
         onChangeText={setEmail}
         autoCapitalize="none"
         keyboardType="email-address"
-        autoComplete="email"
-        placeholderTextColor="#999"
+        accessibilityLabel="Email address"
+        accessibilityHint="Enter your email address"
       />
       <Button 
         title={loading ? "Sending..." : "Send Reset Link"} 

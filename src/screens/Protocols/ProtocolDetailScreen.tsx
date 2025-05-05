@@ -7,6 +7,7 @@ import { ProtocolStackParamList } from '../../navigation/AppStack.d';
 import { fetchProtocolDetails, ProtocolDetail } from '../../services/api/content';
 import useAuthStore from '../../store/authStore';
 import useBillingStore from '../../store/billingStore';
+import UpgradePrompt from '../../components/UpgradePrompt';
 
 type Props = NativeStackScreenProps<ProtocolStackParamList, 'ProtocolDetail'>;
 type ProtocolDetailNavigationProp = NativeStackNavigationProp<ProtocolStackParamList, 'ProtocolDetail'>;
@@ -79,17 +80,21 @@ const ProtocolDetailScreen: React.FC<Props> = ({ route }) => {
         <Text style={styles.meta}>Duration: {protocol.duration}</Text>
         <Text style={styles.meta}>Category: {protocol.category}</Text>
 
-        {user?.isPremium && protocol.steps && protocol.steps.length > 0 && (
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Steps:</Text>
-            {protocol.steps.map((step, index) => (
-              <View key={step.id} style={styles.step}>
-                <Text style={styles.stepTitle}>{`${index + 1}. ${step.title}`}</Text>
-                <Text style={styles.stepDescription}>{step.description}</Text>
-                <Text style={styles.stepMeta}>Duration: {step.duration}</Text>
-              </View>
-            ))}
-          </View>
+        {user?.isPremium ? (
+          protocol.steps && protocol.steps.length > 0 && (
+            <View style={styles.section}>
+              <Text style={styles.sectionTitle}>Steps:</Text>
+              {protocol.steps.map((step, index) => (
+                <View key={step.id} style={styles.step}>
+                  <Text style={styles.stepTitle}>{`${index + 1}. ${step.title}`}</Text>
+                  <Text style={styles.stepDescription}>{step.description}</Text>
+                  <Text style={styles.stepMeta}>Duration: {step.duration}</Text>
+                </View>
+              ))}
+            </View>
+          )
+        ) : (
+          <UpgradePrompt />
         )}
         <Button
           title="Reminders"

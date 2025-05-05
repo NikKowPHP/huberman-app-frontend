@@ -1,1 +1,1 @@
-export const API_BASE_URL = 'https://api.example.com';
+export const API_URL = process.env.API_URL || 'http://localhost:3000';

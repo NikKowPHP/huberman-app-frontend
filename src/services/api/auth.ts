@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = process.env.API_BASE_URL || 'http://localhost:3000/api';
+import { API_URL } from '../../config';
 
 export const register = async (userData: {
   email: string;
@@ -8,7 +8,7 @@ export const register = async (userData: {
   name?: string;
 }) => {
   try {
-    const response = await axios.post(`${API_BASE_URL}/register`, userData);
+    const response = await axios.post(`${API_URL}/register`, userData);
     return response.data;
   } catch (error) {
     throw error;
@@ -20,7 +20,7 @@ export const login = async (credentials: {
   password: string;
 }) => {
   try {
-    const response = await axios.post(`${API_BASE_URL}/login`, credentials);
+    const response = await axios.post(`${API_URL}/login`, credentials);
     return response.data;
   } catch (error) {
     throw error;
@@ -29,7 +29,7 @@ export const login = async (credentials: {
 
 export const logout = async () => {
   try {
-    const response = await axios.post(`${API_BASE_URL}/logout`);
+    const response = await axios.post(`${API_URL}/logout`);
     return response.data;
   } catch (error) {
     throw error;
@@ -38,7 +38,7 @@ export const logout = async () => {
 
 export const forgotPassword = async (email: string) => {
   try {
-    const response = await axios.post(`${API_BASE_URL}/forgot-password`, { email });
+    const response = await axios.post(`${API_URL}/forgot-password`, { email });
     return response.data;
   } catch (error) {
     throw error;
@@ -47,7 +47,7 @@ export const forgotPassword = async (email: string) => {
 
 export const resetPassword = async (token: string, newPassword: string) => {
   try {
-    const response = await axios.post(`${API_BASE_URL}/reset-password`, {
+    const response = await axios.post(`${API_URL}/reset-password`, {
       token,
       newPassword
     });

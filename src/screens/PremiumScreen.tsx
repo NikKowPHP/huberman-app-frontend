@@ -4,6 +4,7 @@ import { fetchPlans } from '../services/api/billing';
 import { Plan } from '../types/billing';
 import Button from '../components/Button/Button';
 import * as RNIap from 'react-native-iap';
+import Card from '../components/Card';
 
 const itemSkus = Platform.select({
   ios: [
@@ -83,12 +84,12 @@ const PremiumScreen: React.FC = () => {
         if (!product) return null;
 
         return (
-          <View key={plan.id} style={styles.planCard}>
+          <Card key={plan.id} style={styles.planCard}>
             <Text style={styles.planName}>{plan.name}</Text>
             <Text style={styles.planPrice}>{product.localizedPrice}</Text>
             <Text style={styles.planDescription}>{plan.description}</Text>
             <Button title={`Subscribe to ${plan.name}`} onPress={() => requestSubscription(product.productId)} />
-          </View>
+          </Card>
         );
       })}
     </ScrollView>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TextInput, Button, ActivityIndicator } from 'react-native';
+import { View, Text, StyleSheet, Button, ActivityIndicator } from 'react-native';
+import CustomTextInput from '../../components/TextInput';
 import useAuthStore from '../../store/authStore';
 import { createReminder, updateReminder, Reminder } from '../../services/api/reminders';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -70,13 +71,13 @@ const CreateEditReminderScreen: React.FC<CreateEditReminderScreenProps> = ({ rou
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{reminder ? 'Edit Reminder' : 'Create Reminder'}</Text>
-      <TextInput
+      <CustomTextInput
         style={styles.input}
         placeholder="Protocol ID"
         value={protocolId}
         onChangeText={setProtocolId}
       />
-      <TextInput
+      <CustomTextInput
         style={styles.input}
         placeholder="Time (HH:MM)"
         value={time}

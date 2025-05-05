@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, ActivityIndicator, StyleSheet } from 'react-native';
+import { View, Text, Button, ActivityIndicator, StyleSheet } from 'react-native';
+import CustomTextInput from '../components/TextInput';
 import useAuthStore from '../store/authStore';
 import { useNavigation } from '@react-navigation/native';
 import { AuthStackNavigationProp } from '../navigation/AuthStack';
@@ -30,14 +31,14 @@ const SignupScreen = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Sign Up</Text>
-      <TextInput
+      <CustomTextInput
         style={styles.input}
         placeholder="Name"
         value={name}
         onChangeText={setName}
         autoCapitalize="words"
       />
-      <TextInput
+      <CustomTextInput
         style={styles.input}
         placeholder="Email"
         value={email}
@@ -45,7 +46,7 @@ const SignupScreen = () => {
         keyboardType="email-address"
         autoCapitalize="none"
       />
-      <TextInput
+      <CustomTextInput
         style={styles.input}
         placeholder="Password"
         value={password}

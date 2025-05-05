@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = process.env.API_BASE_URL || 'http://localhost:3000/api';
+import { API_URL } from '../../config';
 
 export type Protocol = {
   id: string;
@@ -24,7 +24,7 @@ export type ProtocolDetail = Protocol & {
 
 export const fetchProtocols = async (): Promise<Protocol[]> => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/protocols`);
+    const response = await axios.get(`${API_URL}/protocols`);
     return response.data;
   } catch (error) {
     throw error;
@@ -33,7 +33,7 @@ export const fetchProtocols = async (): Promise<Protocol[]> => {
 
 export const fetchProtocolDetails = async (id: string, isPremium: boolean = false): Promise<ProtocolDetail> => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/protocols/${id}`, {
+    const response = await axios.get(`${API_URL}/protocols/${id}`, {
       params: {
         isPremium: isPremium,
       },

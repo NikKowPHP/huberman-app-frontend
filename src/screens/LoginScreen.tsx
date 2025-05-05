@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, ActivityIndicator, StyleSheet } from 'react-native';
+import { View, Text, ActivityIndicator, StyleSheet } from 'react-native';
+import CustomTextInput from '../components/TextInput';
 import useAuthStore from '../store/authStore';
 import { useNavigation } from '@react-navigation/native';
 import { AuthStackNavigationProp } from '../navigation/AuthStack';
@@ -62,7 +63,7 @@ const LoginScreen = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.title} accessibilityRole="header" accessibilityLabel="Login">Login</Text>
-      <TextInput
+      <CustomTextInput
         style={styles.input}
         placeholder="Email"
         value={email}
@@ -72,7 +73,7 @@ const LoginScreen = () => {
         accessibilityLabel="Email address"
         accessibilityHint="Enter your email address"
       />
-      <TextInput
+      <CustomTextInput
         style={styles.input}
         placeholder="Password"
         value={password}
@@ -80,6 +81,7 @@ const LoginScreen = () => {
         secureTextEntry
         accessibilityLabel="Password"
         accessibilityHint="Enter your password"
+        autoCapitalize="none"
       />
       {loading ? (
         <ActivityIndicator size="small" color={theme.colors.primary} accessibilityLabel="Loading" />

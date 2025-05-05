@@ -1,9 +1,9 @@
 import axios from 'axios';
-import { API_BASE_URL } from '../../config';
+import { API_URL } from '../../config';
 
 export const sendDeviceToken = async (token: string) => {
   try {
-    const response = await axios.post(`${API_BASE_URL}/user/device-token`, {
+    const response = await axios.post(`${API_URL}/user/device-token`, {
       token,
     });
     return response.data;

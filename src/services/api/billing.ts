@@ -1,10 +1,10 @@
 import axios from 'axios';
-import { API_BASE_URL } from '../../config';
+import { API_URL } from '../../config';
 import { Plan, SubscriptionStatus } from '../../types/billing';
 
 export const fetchPlans = async (): Promise<Plan[]> => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/plans`);
+    const response = await axios.get(`${API_URL}/plans`);
     return response.data;
   } catch (error) {
     console.error('Error fetching plans:', error);
@@ -14,7 +14,7 @@ export const fetchPlans = async (): Promise<Plan[]> => {
 
 export const fetchSubscriptionStatus = async (userId: string): Promise<SubscriptionStatus> => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/user/subscription`, {
+    const response = await axios.get(`${API_URL}/user/subscription`, {
       params: { userId }
     });
     return response.data;

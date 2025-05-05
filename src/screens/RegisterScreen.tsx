@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
-import { useAuthStore } from '../store/authStore';
+import { View, Text, Button, StyleSheet, Alert } from 'react-native';
+import CustomTextInput from '../components/TextInput';
+import useAuthStore from '../store/authStore';
 
 interface RegisterScreenProps {
   navigation: any;
 }
 
 const RegisterScreen: React.FC<RegisterScreenProps> = ({ navigation }) => {
-  const { register } = useAuthStore();
+  const register = useAuthStore((state) => state.register);
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -20,7 +22,7 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({ navigation }) => {
 
     setLoading(true);
     try {
-      await register(email, password);
+      await register(email, password, name);
       navigation.navigate('Home');
     } catch (error) {
       Alert.alert('Error', 'Registration failed');
@@ -32,24 +34,34 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Create Account</Text>
-      <TextInput
+      <CustomTextInput
+        style={styles.input}
+        placeholder="Name"
+        value={name}
+        onChangeText={setName}
+        autoCapitalize="words"
+        accessibilityLabel="Name"
+        accessibilityHint="Enter your name"
+      />
+      <CustomTextInput
         style={styles.input}
         placeholder="Email"
         value={email}
         onChangeText={setEmail}
-        autoCapitalize="none"
         keyboardType="email-address"
-        autoComplete="email"
-        placeholderTextColor="#999"
+        autoCapitalize="none"
+        accessibilityLabel="Email address"
+        accessibilityHint="Enter your email address"
       />
-      <TextInput
+      <CustomTextInput
         style={styles.input}
         placeholder="Password"
         value={password}
         onChangeText={setPassword}
         secureTextEntry
-        autoComplete="password"
-        placeholderTextColor="#999"
+        accessibilityLabel="Password"
+        accessibilityHint="Enter your password"
+        autoCapitalize="none"
       />
       <Button 
         title={loading ? "Loading..." : "Register"} 

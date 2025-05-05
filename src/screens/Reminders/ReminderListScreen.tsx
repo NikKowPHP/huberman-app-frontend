@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import useAuthStore from '../../store/authStore';
 import { fetchReminders } from '../../services/api/reminders';
 import { useTheme } from '../../theme/ThemeProvider';
+import UpgradePrompt from '../../components/UpgradePrompt';
 
 const ReminderListScreen = () => {
   const navigation = useNavigation();
@@ -34,7 +35,7 @@ const ReminderListScreen = () => {
   if (!user?.isPremium) {
     return (
       <View style={styles.container}>
-        <Text>This feature is only available for premium users.</Text>
+        <UpgradePrompt />
       </View>
     );
   }
