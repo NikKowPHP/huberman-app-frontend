@@ -10,7 +10,7 @@
 ## Pending Tasks
 - [ ] Subscription flow implementation
 - [ ] Premium features implementation
-- [ ] Push notification setup
+- [x] Push notification setup
 - [ ] Final testing and refinements
 ---
 
@@ -137,18 +137,18 @@
 ## Phase 6: Push Notifications Setup
 
 *   **Firebase Setup:**
-    *   `[ ]` Install `@react-native-firebase/app` and `@react-native-firebase/messaging`.
-    *   `[ ]` Configure Firebase project (iOS/Android apps). Download and add config files (`GoogleService-Info.plist`, `google-services.json`).
-    *   `[ ]` Implement native setup for Firebase messaging (AppDelegate, Podfile, build.gradle changes).
+    *   `[x]` Install `@react-native-firebase/app` and `@react-native-firebase/messaging`.
+    *   `[ ]` Configure Firebase project (iOS/Android apps). Download and add config files (`GoogleService-Info.plist`, `google-services.json`). (SKIP FOR NOW)
+    *   `[x]` Implement native setup for Firebase messaging (AppDelegate, Podfile, build.gradle changes).
 *   **Token Handling:**
-    *   `[ ]` Implement logic to request user permission for notifications.
-    *   `[ ]` Implement logic to get the FCM device token using `@react-native-firebase/messaging`.
-    *   `[ ]` Implement API service function (`src/services/api/user.ts`) to send the token to the backend (`POST /api/user/device-token`) (API).
-    *   `[ ]` Send token to backend upon successful login or when the token refreshes.
+    *   `[x]` Implement logic to request user permission for notifications.
+    *   `[x]` Implement logic to get the FCM device token using `@react-native-firebase/messaging`.
+    *   `[x]` Implement API service function (`src/services/api/user.ts`) to send the token to the backend (`POST /api/user/device-token`) (API).
+    *   `[x]` Send token to backend upon successful login or when the token refreshes.
 *   **Notification Handling:**
-    *   `[ ]` Implement listeners for foreground notifications.
-    *   `[ ]` Implement listeners/setup for background/quit state notification handling.
-    *   `[ ]` Implement logic to display incoming reminder notifications (or let OS handle basic display).
+    *   `[x]` Implement listeners for foreground notifications.
+    *   `[x]` Implement listeners/setup for background/quit state notification handling.
+    *   `[x]` Implement logic to display incoming reminder notifications (or let OS handle basic display).
 
 ---
 

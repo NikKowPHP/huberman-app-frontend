@@ -1,5 +1,7 @@
 import { create } from 'zustand';
 import * as Keychain from 'react-native-keychain';
+import { sendDeviceToken } from '../services/api/user';
+import messaging from '@react-native-firebase/messaging';
 
 interface User {
   id: string;
@@ -38,6 +40,11 @@ const useAuthStore = create<AuthState>((set) => ({
         user: data.user,
         isAuthenticated: true
       });
+
+      const fcmToken = await messaging().getToken();
+      if (fcmToken) {
+        sendDeviceToken(fcmToken);
+      }
     } catch (error) {
       console.error('Login error:', error);
       throw error;
@@ -59,6 +66,11 @@ const useAuthStore = create<AuthState>((set) => ({
         user: data.user,
         isAuthenticated: true
       });
+
+      const fcmToken = await messaging().getToken();
+      if (fcmToken) {
+        sendDeviceToken(fcmToken);
+      }
     } catch (error) {
       console.error('Registration error:', error);
       throw error;

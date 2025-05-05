@@ -16,6 +16,7 @@ end
 
 target 'hubermanAppFrontend' do
   config = use_native_modules!
+  pod 'FirebaseMessaging'
 
   use_react_native!(
     :path => config[:reactNativePath],
