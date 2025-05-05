@@ -90,28 +90,28 @@
 ## Phase 4: Subscription Flow (IAP Integration)
 
 *   **IAP Setup:**
-    *   `[ ]` Install `react-native-iap` and link native dependencies.
+    *   `[x]` Install `react-native-iap` and link native dependencies.
     *   `[ ]` Configure products (Premium Monthly, Premium Annual) in App Store Connect and Google Play Console. Ensure IDs match backend `plans` table identifiers.
     *   `[ ]` Implement platform-specific setup for `react-native-iap` (iOS capabilities, Android billing dependency).
 *   **API Service:**
-    *   `[ ]` Implement API service functions (`src/services/api/billing.ts`) for:
-        *   `[ ]` Fetching available plans (`/plans`) (API)
-        *   `[ ]` Fetching current user subscription status (`/user/subscription`) (API)
+    *   `[x]` Implement API service functions (`src/services/api/billing.ts`) for:
+        *   `[x]` Fetching available plans (`/plans`) (API)
+        *   `[x]` Fetching current user subscription status (`/user/subscription`) (API)
 *   **Screens:**
-    *   `[ ]` (UI) Build "Go Premium" / Subscription Offers screen. Display plans fetched from API.
+    *   `[x]` (UI) Build "Go Premium" / Subscription Offers screen. Display plans fetched from API.
 *   **State Management:**
-    *   `[ ]` Add subscription status (`plan`, `status`, `ends_at`) to relevant store (`authStore` or dedicated `billingStore`).
-    *   `[ ]` Implement logic to periodically fetch/refresh subscription status from `/user/subscription` API.
+    *   `[x]` Add subscription status (`plan`, `status`, `ends_at`) to relevant store (`authStore` or dedicated `billingStore`).
+    *   `[x]` Implement logic to periodically fetch/refresh subscription status from `/user/subscription` API.
 *   **Integration:**
-    *   `[ ]` Use `react-native-iap` functions to:
-        *   `[ ]` Fetch product details (`getProducts`).
-        *   `[ ]` Initiate purchase flow (`requestSubscription`).
-    *   `[ ]` Handle IAP purchase results (success, failure, cancellation).
+    *   `[x]` Use `react-native-iap` functions to:
+        *   `[x]` Fetch product details (`getProducts`).
+        *   `[x]` Initiate purchase flow (`requestSubscription`).
+    *   `[x]` Handle IAP purchase results (success, failure, cancellation).
         *   *Note:* The primary validation happens backend via webhooks. Frontend may need to inform the backend "purchase initiated" or simply refresh user/subscription status after a short delay or upon app foregrounding to reflect changes validated by the backend. Discuss exact flow with backend team.
-    *   `[ ]` Display current subscription status on Settings screen.
-    *   `[ ]` Conditionally display "Upgrade" prompts or premium features based on subscription status from the state store.
+    *   `[x]` Display current subscription status on Settings screen.
+    *   `[x]` Conditionally display "Upgrade" prompts or premium features based on subscription status from the state store.
     *   `[ ]` Handle IAP initialization errors and loading states.
-    *   `[ ]` Write code for store logic related to subscription status.
+    *   `[x]` Write code for store logic related to subscription status.
 
 ---
 

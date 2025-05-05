@@ -4,6 +4,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { ProtocolStackParamList } from '../../navigation/AppStack.d';
 import { fetchProtocolDetails, ProtocolDetail } from '../../services/api/content';
+import useAuthStore from '../../store/authStore';
 
 type Props = NativeStackScreenProps<ProtocolStackParamList, 'ProtocolDetail'>;
 
@@ -12,13 +13,14 @@ const ProtocolDetailScreen: React.FC<Props> = ({ route }) => {
   const [protocol, setProtocol] = useState<ProtocolDetail | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { user } = useAuthStore();
 
   useEffect(() => {
     const loadProtocolDetails = async () => {
       try {
         const data = await fetchProtocolDetails(id);
         setProtocol(data);
-      } catch (err) {
+      } catch (err: any) {
         setError('Failed to fetch protocol details.');
         console.error(err);
       } finally {
@@ -63,11 +65,15 @@ const ProtocolDetailScreen: React.FC<Props> = ({ route }) => {
             <FontAwesome name="star" size={16} color="#FFD700" style={{marginLeft: 8}} />
           )}
         </View>
-        <Text style={styles.description}>{protocol.description}</Text>
+        {user?.isPremium ? (
+          <Text style={styles.description}>{protocol.description}</Text>
+        ) : (
+          <Text style={styles.description}>{protocol.description.split('\n')[0]}...</Text>
+        )}
         <Text style={styles.meta}>Duration: {protocol.duration}</Text>
         <Text style={styles.meta}>Category: {protocol.category}</Text>
 
-        {protocol.steps && protocol.steps.length > 0 && (
+        {user?.isPremium && protocol.steps && protocol.steps.length > 0 && (
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Steps:</Text>
             {protocol.steps.map((step, index) => (
@@ -80,7 +86,7 @@ const ProtocolDetailScreen: React.FC<Props> = ({ route }) => {
           </View>
         )}
 
-        {protocol.references && protocol.references.length > 0 && (
+        {user?.isPremium && protocol.references && protocol.references.length > 0 && (
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>References:</Text>
             {protocol.references.map((ref, index) => (

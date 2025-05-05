@@ -5,6 +5,7 @@ export interface Plan {
   currency: string;
   interval: 'month' | 'year';
   features: string[];
+  description: string;
 }
 
 export interface SubscriptionStatus {

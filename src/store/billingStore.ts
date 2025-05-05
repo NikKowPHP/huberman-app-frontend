@@ -8,6 +8,7 @@ interface BillingState {
   error: string | null;
   fetchSubscription: (userId: string) => Promise<void>;
   refreshSubscription: (userId: string) => Promise<void>;
+  initSubscriptionRefresh: (userId: string) => void;
 }
 
 const useBillingStore = create<BillingState>((set) => ({
@@ -20,7 +21,7 @@ const useBillingStore = create<BillingState>((set) => ({
       set({ isLoading: true, error: null });
       const subscription = await fetchSubscriptionStatus(userId);
       set({ subscription, isLoading: false });
-    } catch (error) {
+    } catch (error: any) {
       set({ error: error.message, isLoading: false });
       throw error;
     }
@@ -33,7 +34,17 @@ const useBillingStore = create<BillingState>((set) => ({
     } catch (error) {
       console.error('Failed to refresh subscription:', error);
     }
-  }
+  },
+  initSubscriptionRefresh: (userId: string) => {
+    setInterval(async () => {
+      try {
+        const subscription = await fetchSubscriptionStatus(userId);
+        set({ subscription });
+      } catch (error) {
+        console.error('Failed to refresh subscription:', error);
+      }
+    }, 30000); // Refresh every 30 seconds
+  },
 }));
 
 export default useBillingStore;

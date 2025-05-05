@@ -2,6 +2,7 @@ import { create } from 'zustand';
 import * as Keychain from 'react-native-keychain';
 
 interface User {
+  id: string;
   name: string;
   email: string;
   isPremium: boolean;
