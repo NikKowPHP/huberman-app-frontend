@@ -3,7 +3,7 @@
 **Project Goal:** Implement the React Native mobile application frontend for the Huberman App, providing an intuitive user interface aligned with the Microsoft Fluent UI aesthetic, consuming the backend API, handling state, and integrating native features like In-App Purchases and Push Notifications.
 
 **Development Approach:** Component-Driven Development, integrating features iteratively. Testing (Unit, Component, Integration) should be incorporated throughout. Collaboration with Backend and UI/UX teams is crucial.
-ONLY CODE WRITE WITHOUT RUNNING TESTS AND APP BUILD/RUN
+- Definition Rule: ONLY CODE WRITE WITHOUT RUNNING TESTS AND APP BUILD/RUN
 
 
 **Legend:**

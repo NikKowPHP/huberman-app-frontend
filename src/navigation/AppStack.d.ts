@@ -1,7 +1,21 @@
 // Type definitions for the App Stack (Bottom Tab Navigator)
 
 export type AppStackParamList = {
-  Protocols: undefined; // No params expected for ProtocolListScreen initially
-  Notes: undefined;     // No params expected for NotesScreen
-  Settings: undefined;  // No params expected for SettingsScreen
+  Protocols: undefined;
+  Notes: undefined;
+  Settings: undefined;
+};
+
+export type ProtocolStackParamList = {
+  ProtocolList: undefined;
+  ProtocolDetail: { id: string };
+};
+
+export type NoteStackParamList = {
+  NoteList: undefined;
+  NoteDetail: { id: string };
+};
+
+export type SettingsStackParamList = {
+  Settings: undefined;
 };
