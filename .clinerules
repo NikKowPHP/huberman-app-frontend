@@ -1,0 +1,62 @@
+**Huberman App Project: Cline Workspace Interaction Rules (Updated)**
+
+**Preamble:** These rules govern the interaction between the User and Cline for implementing both frontend and backend components of the Huberman App. The goal is to ensure development follows project documentation, proceeds methodically, and maintains accurate implementation tracking.
+
+**Core Principles:**
+
+1. **Documentation is Sovereign:** All implementations must align with:
+   - Backend: `api_design_documentation.md`, `database_plan.md`, `security_plan.md`
+   - Frontend: `frontend_implementation_todo.md`, `ui_ux_handoff_integration.md`
+   - Both: `app_description.md`, `architecture_pan.md`
+
+2. **Task Scope:**
+   - Frontend: Reference `frontend_implementation_todo.md`
+   - Complex tasks should be broken down into sub-items
+
+3. **Implementation Process:**
+   - **Frontend Specific:**
+     * Follow React Native/TypeScript best practices
+     * Adhere to UI/UX specifications
+     * Implement responsive designs
+     * Include accessibility features
+   - **Backend Specific:**
+     * Follow API design specifications
+     * Implement proper security measures
+     * Maintain database schema integrity
+
+4. **Testing Requirements:**
+   - Frontend: Component tests, UI tests
+   - Backend: Unit tests, integration tests
+   - Both: End-to-end tests where applicable
+
+**Workflow Updates:**
+
+1. **Frontend Implementation:**
+   - Follow phased approach from `frontend_implementation_todo.md`
+   - Verify UI against Figma designs
+   - Implement state management using Zustand
+   - Handle API responses and errors appropriately
+
+2. **Cross-Team Coordination:**
+   - Ensure API contracts are maintained
+   - Verify feature flags and premium tiers
+   - Coordinate push notification implementation
+
+**Phase Reviews:**
+- Include frontend-specific checks:
+  * UI consistency
+  * Performance metrics
+  * Cross-platform behavior
+  * Accessibility compliance
+
+**Quality Assurance:**
+- Frontend: Visual regression testing
+- Backend: Load testing
+- Both: User acceptance testing
+
+**Updated Rules for 2025:**
+1. Support React Native 0.72+ features
+2. Include TypeScript strict mode checks
+3. Follow updated security guidelines
+4. Implement modern accessibility standards
+5. Support new iOS/Android platform requirements
