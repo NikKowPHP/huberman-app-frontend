@@ -61,6 +61,7 @@ android/
             styles.xml
         AndroidManifest.xml
     build.gradle
+    google-services.json
     proguard-rules.pro
   gradle/
     wrapper/
@@ -203,45 +204,6 @@ webpack.config.js
 
 # Files
 
-## File: repomix.config.json
-````json
- 1: {
- 2:   "input": {
- 3:     "maxFileSize": 52428800
- 4:   },
- 5:   "output": {
- 6:     "filePath": "repomix-output.md",
- 7:     "style": "markdown",
- 8:     "parsableStyle": false,
- 9:     "fileSummary": true,
-10:     "directoryStructure": true,
-11:     "files": true,
-12:     "removeComments": true,
-13:     "removeEmptyLines": true,
-14:     "compress": false,
-15:     "topFilesLength": 10,
-16:     "showLineNumbers": true,
-17:     "copyToClipboard": true,
-18:     "git": {
-19:       "sortByChanges": true,
-20:       "sortByChangesMaxCommits": 100
-21:     }
-22:   },
-23:   "include": [],
-24:   "ignore": {
-25:     "useGitignore": true,
-26:     "useDefaultPatterns": true,
-27:     "customPatterns": []
-28:   },
-29:   "security": {
-30:     "enableSecurityCheck": true
-31:   },
-32:   "tokenCount": {
-33:     "encoding": "o200k_base"
-34:   }
-35: }
-````
-
 ## File: __tests__/App.test.tsx
 ````typescript
 1: import React from 'react';
@@ -375,6 +337,39 @@ webpack.config.js
 22:       </activity>
 23:     </application>
 24: </manifest>
+````
+
+## File: android/app/google-services.json
+````json
+ 1: {
+ 2:   "project_info": {
+ 3:     "project_number": "544986799642",
+ 4:     "project_id": "huberman-95d6d",
+ 5:     "storage_bucket": "huberman-95d6d.firebasestorage.app"
+ 6:   },
+ 7:   "client": [
+ 8:     {
+ 9:       "client_info": {
+10:         "mobilesdk_app_id": "1:544986799642:android:3cbfb40d755256d1b8fba3",
+11:         "android_client_info": {
+12:           "package_name": "com.lessay.protocolize"
+13:         }
+14:       },
+15:       "oauth_client": [],
+16:       "api_key": [
+17:         {
+18:           "current_key": "AIzaSyBv9CIzO50j7up-abLcLkJ0kwtAHMxjSIM"
+19:         }
+20:       ],
+21:       "services": {
+22:         "appinvite_service": {
+23:           "other_platform_oauth_client": []
+24:         }
+25:       }
+26:     }
+27:   ],
+28:   "configuration_version": "1"
+29: }
 ````
 
 ## File: android/app/proguard-rules.pro
@@ -6805,27 +6800,6 @@ webpack.config.js
 16: gem 'mutex_m'
 ````
 
-## File: index.js
-````javascript
-1: import {AppRegistry} from 'react-native';
-2: import App from './App';
-3: import {name as appName} from './app.json';
-4: AppRegistry.registerComponent(appName, () => App);
-````
-
-## File: index.web.js
-````javascript
-1: import React from 'react';
-2: import ReactDOM from 'react-dom/client';
-3: import App from './src/App';
-4: const root = ReactDOM.createRoot(document.getElementById('root'));
-5: root.render(
-6:   <React.StrictMode>
-7:     <App />
-8:   </React.StrictMode>
-9: );
-````
-
 ## File: jest.config.js
 ````javascript
 1: module.exports = {
@@ -6968,218 +6942,43 @@ webpack.config.js
 97: - [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
 ````
 
-## File: webpack.config.js
-````javascript
- 1: const path = require('path');
- 2: const HtmlWebpackPlugin = require('html-webpack-plugin');
- 3: const babelLoaderConfiguration = {
- 4:   test: /\.(jsx?|tsx?)$/,
- 5:   include: [
- 6:     path.resolve(__dirname, 'src'),
- 7:     path.resolve(__dirname, 'index.web.js'),
- 8:     path.resolve(__dirname, 'node_modules/react-native'),
- 9:     path.resolve(__dirname, 'node_modules/react-native-web'),
-10:     path.resolve(__dirname, 'node_modules/@react-navigation'),
-11:     path.resolve(__dirname, 'node_modules/react-native-gesture-handler'),
-12:     path.resolve(__dirname, 'node_modules/react-native-screens'),
-13:     path.resolve(__dirname, 'node_modules/react-native-safe-area-context'),
-14:     path.resolve(__dirname, 'node_modules/react-native-reanimated'),
-15:     path.resolve(__dirname, 'node_modules/@expo'),
-16:     path.resolve(__dirname, 'node_modules/expo-modules-core'),
-17:   ],
-18:   use: {
-19:     loader: 'babel-loader',
-20:     options: {
-21:       presets: ['module:@react-native/babel-preset'],
-22:       plugins: [
-23:         '@babel/plugin-proposal-export-namespace-from',
-24:       ],
-25:     },
-26:   },
-27: };
-28: const fontLoaderConfiguration = {
-29:   test: /\.ttf$/,
-30:   use: ['file-loader'],
-31: };
-32: const assetFileLoaderConfiguration = {
-33:   test: /\.(gif|jpe?g|png|svg)$/,
-34:   use: {
-35:     loader: 'url-loader',
-36:     options: {
-37:       name: '[hash].[ext]',
-38:     },
-39:   },
-40: };
-41: module.exports = {
-42:   mode: 'development',
-43:   entry: path.resolve(__dirname, 'index.web.js'),
-44:   output: {
-45:     path: path.resolve(__dirname, 'dist'),
-46:     filename: 'bundle.js',
-47:   },
-48:   devServer: {
-49:     static: path.resolve(__dirname, 'dist'),
-50:     port: 9000,
-51:   },
-52:   module: {
-53:     rules: [
-54:       babelLoaderConfiguration,
-55:       assetFileLoaderConfiguration,
-56:       fontLoaderConfiguration,
-57:       {
-58:         test: /\.css$/i,
-59:         use: ["style-loader", "css-loader"],
-60:       },
-61:     ],
-62:   },
-63:   plugins: [
-64:     new HtmlWebpackPlugin({
-65:       template: path.resolve(__dirname, 'public/index.html'),
-66:     }),
-67:   ],
-68:   resolve: {
-69:     alias: {
-70:       '@': path.resolve(__dirname, 'src/'),
-71:       'react-native$': 'react-native-web',
-72:       '@react-navigation/core': path.resolve(__dirname, 'node_modules/@react-navigation/core/src/index.tsx'),
-73:       '@react-navigation/native': path.resolve(__dirname, 'node_modules/@react-navigation/native/src/index.tsx'),
-74:       '@react-navigation/native-stack': path.resolve(__dirname, 'node_modules/@react-navigation/native-stack/src/index.tsx'),
-75:       '@react-navigation/bottom-tabs': path.resolve(__dirname, 'node_modules/@react-navigation/bottom-tabs/src/index.tsx'),
-76:       'react-native-gesture-handler': path.resolve(__dirname, 'node_modules/react-native-gesture-handler/src/index.ts'),
-77:       'react-native-screens': path.resolve(__dirname, 'node_modules/react-native-screens/src/index.tsx'),
-78:       'react-native-safe-area-context': path.resolve(__dirname, 'node_modules/react-native-safe-area-context/src/index.tsx'),
-79:     },
-80:     extensions: ['.web.tsx', '.web.ts', '.tsx', '.ts', '.web.js', '.js', '.jsx', '.json'],
-81:     mainFields: ['browser', 'module', 'main'],
-82:     fullySpecified: false,
-83:   },
-84: };
-````
-
-## File: android/app/build.gradle
-````
-  1: apply plugin: "com.android.application"
-  2: apply plugin: "org.jetbrains.kotlin.android"
-  3: apply plugin: "com.facebook.react"
-  4: 
-  5: /**
-  6:  * This is the configuration block to customize your React Native Android app.
-  7:  * By default you don't need to apply any configuration, just uncomment the lines you need.
-  8:  */
-  9: react {
- 10:     /* Folders */
- 11:     //   The root of your project, i.e. where "package.json" lives. Default is '../..'
- 12:     // root = file("../../")
- 13:     //   The folder where the react-native NPM package is. Default is ../../node_modules/react-native
- 14:     // reactNativeDir = file("../../node_modules/react-native")
- 15:     //   The folder where the react-native Codegen package is. Default is ../../node_modules/@react-native/codegen
- 16:     // codegenDir = file("../../node_modules/@react-native/codegen")
- 17:     //   The cli.js file which is the React Native CLI entrypoint. Default is ../../node_modules/react-native/cli.js
- 18:     // cliFile = file("../../node_modules/react-native/cli.js")
- 19: 
- 20:     /* Variants */
- 21:     //   The list of variants to that are debuggable. For those we're going to
- 22:     //   skip the bundling of the JS bundle and the assets. By default is just 'debug'.
- 23:     //   If you add flavors like lite, prod, etc. you'll have to list your debuggableVariants.
- 24:     // debuggableVariants = ["liteDebug", "prodDebug"]
- 25: 
- 26:     /* Bundling */
- 27:     //   A list containing the node command and its flags. Default is just 'node'.
- 28:     // nodeExecutableAndArgs = ["node"]
- 29:     //
- 30:     //   The command to run when bundling. By default is 'bundle'
- 31:     // bundleCommand = "ram-bundle"
- 32:     //
- 33:     //   The path to the CLI configuration file. Default is empty.
- 34:     // bundleConfig = file(../rn-cli.config.js)
- 35:     //
- 36:     //   The name of the generated asset file containing your JS bundle
- 37:     // bundleAssetName = "MyApplication.android.bundle"
- 38:     //
- 39:     //   The entry file for bundle generation. Default is 'index.android.js' or 'index.js'
- 40:     // entryFile = file("../js/MyApplication.android.js")
- 41:     //
- 42:     //   A list of extra flags to pass to the 'bundle' commands.
- 43:     //   See https://github.com/react-native-community/cli/blob/main/docs/commands.md#bundle
- 44:     // extraPackagerArgs = []
- 45: 
- 46:     /* Hermes Commands */
- 47:     //   The hermes compiler command to run. By default it is 'hermesc'
- 48:     // hermesCommand = "$rootDir/my-custom-hermesc/bin/hermesc"
- 49:     //
- 50:     //   The list of flags to pass to the Hermes compiler. By default is "-O", "-output-source-map"
- 51:     // hermesFlags = ["-O", "-output-source-map"]
- 52: 
- 53:     /* Autolinking */
- 54:     autolinkLibrariesWithApp()
- 55: }
- 56: 
- 57: /**
- 58:  * Set this to true to Run Proguard on Release builds to minify the Java bytecode.
- 59:  */
- 60: def enableProguardInReleaseBuilds = false
- 61: 
- 62: /**
- 63:  * The preferred build flavor of JavaScriptCore (JSC)
- 64:  *
- 65:  * For example, to use the international variant, you can use:
- 66:  * `def jscFlavor = io.github.react-native-community:jsc-android-intl:2026004.+`
- 67:  *
- 68:  * The international variant includes ICU i18n library and necessary data
- 69:  * allowing to use e.g. `Date.toLocaleString` and `String.localeCompare` that
- 70:  * give correct results when using with locales other than en-US. Note that
- 71:  * this variant is about 6MiB larger per architecture than default.
- 72:  */
- 73: def jscFlavor = 'io.github.react-native-community:jsc-android:2026004.+'
- 74: 
- 75: android {
- 76:     ndkVersion rootProject.ext.ndkVersion
- 77:     buildToolsVersion rootProject.ext.buildToolsVersion
- 78:     compileSdk rootProject.ext.compileSdkVersion
- 79: 
- 80:     namespace "com.hubermanappfrontend"
- 81:     defaultConfig {
- 82:         applicationId "com.hubermanappfrontend"
- 83:         minSdkVersion rootProject.ext.minSdkVersion
- 84:         targetSdkVersion rootProject.ext.targetSdkVersion
- 85:         versionCode 1
- 86:         versionName "1.0"
- 87:     }
- 88:     signingConfigs {
- 89:         debug {
- 90:             storeFile file('debug.keystore')
- 91:             storePassword 'android'
- 92:             keyAlias 'androiddebugkey'
- 93:             keyPassword 'android'
- 94:         }
- 95:     }
- 96:     buildTypes {
- 97:         debug {
- 98:             signingConfig signingConfigs.debug
- 99:         }
-100:         release {
-101:             // Caution! In production, you need to generate your own keystore file.
-102:             // see https://reactnative.dev/docs/signed-apk-android.
-103:             signingConfig signingConfigs.debug
-104:             minifyEnabled enableProguardInReleaseBuilds
-105:             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
-106:         }
-107:     }
-108: }
-109: 
-110: dependencies {
-111:     // The version of react-native is set by the React Native Gradle Plugin
-112:     implementation("com.facebook.react:react-android")
-113: 
-114:     implementation platform('com.google.firebase:firebase-bom:32.8.0')
-115:     implementation 'com.google.firebase:firebase-messaging-ktx'
-116: 
-117:     if (hermesEnabled.toBoolean()) {
-118:         implementation("com.facebook.react:hermes-android")
-119:     } else {
-120:         implementation jscFlavor
-121:     }
-122: }
+## File: repomix.config.json
+````json
+ 1: {
+ 2:   "input": {
+ 3:     "maxFileSize": 52428800
+ 4:   },
+ 5:   "output": {
+ 6:     "filePath": "repomix-output.md",
+ 7:     "style": "markdown",
+ 8:     "parsableStyle": false,
+ 9:     "fileSummary": true,
+10:     "directoryStructure": true,
+11:     "files": true,
+12:     "removeComments": true,
+13:     "removeEmptyLines": true,
+14:     "compress": false,
+15:     "topFilesLength": 10,
+16:     "showLineNumbers": true,
+17:     "copyToClipboard": true,
+18:     "git": {
+19:       "sortByChanges": true,
+20:       "sortByChangesMaxCommits": 100
+21:     }
+22:   },
+23:   "include": [],
+24:   "ignore": {
+25:     "useGitignore": true,
+26:     "useDefaultPatterns": true,
+27:     "customPatterns": []
+28:   },
+29:   "security": {
+30:     "enableSecurityCheck": true
+31:   },
+32:   "tokenCount": {
+33:     "encoding": "o200k_base"
+34:   }
+35: }
 ````
 
 ## File: android/build.gradle
@@ -7204,9 +7003,8 @@ webpack.config.js
 18:     classpath("com.google.gms:google-services:4.4.1")
 19: }
 20: }
-21: apply plugin: "com.google.gms.google-services"
-22: 
-23: apply plugin: "com.facebook.react.rootproject"
+21: 
+22: apply plugin: "com.facebook.react.rootproject"
 ````
 
 ## File: android/settings.gradle
@@ -7313,24 +7111,25 @@ webpack.config.js
 16: 
 17: target 'hubermanAppFrontend' do
 18:   config = use_native_modules!
-19:   pod 'FirebaseMessaging'
-20: 
-21:   use_react_native!(
-22:     :path => config[:reactNativePath],
-23:     # An absolute path to your application root.
-24:     :app_path => "#{Pod::Config.instance.installation_root}/.."
-25:   )
-26: 
-27:   post_install do |installer|
-28:     # https://github.com/facebook/react-native/blob/main/packages/react-native/scripts/react_native_pods.rb#L197-L202
-29:     react_native_post_install(
-30:       installer,
-31:       config[:reactNativePath],
-32:       :mac_catalyst_enabled => false,
-33:       # :ccache_enabled => true
-34:     )
-35:   end
-36: end
+19:   pod 'Firebase/Core' # Add Firebase Core pod
+20:   pod 'FirebaseMessaging'
+21: 
+22:   use_react_native!(
+23:     :path => config[:reactNativePath],
+24:     # An absolute path to your application root.
+25:     :app_path => "#{Pod::Config.instance.installation_root}/.."
+26:   )
+27: 
+28:   post_install do |installer|
+29:     # https://github.com/facebook/react-native/blob/main/packages/react-native/scripts/react_native_pods.rb#L197-L202
+30:     react_native_post_install(
+31:       installer,
+32:       config[:reactNativePath],
+33:       :mac_catalyst_enabled => false,
+34:       # :ccache_enabled => true
+35:     )
+36:   end
+37: end
 ````
 
 ## File: src/components/UpgradePrompt.tsx
@@ -7823,6 +7622,264 @@ webpack.config.js
 3:   "displayName": "hubermanAppFrontend",
 4:   "extraDotenv": true
 5: }
+````
+
+## File: index.js
+````javascript
+1: import {AppRegistry} from 'react-native';
+2: import App from './App';
+3: import firebase from '@react-native-firebase/app';
+4: firebase.initializeApp();
+5: import {name as appName} from './app.json';
+6: AppRegistry.registerComponent(appName, () => App);
+````
+
+## File: index.web.js
+````javascript
+ 1: import React from 'react';
+ 2: import ReactDOM from 'react-dom/client';
+ 3: import App from './src/App';
+ 4: import { initializeApp } from "firebase/app";
+ 5: const firebaseConfig = {
+ 6:   apiKey: "AIzaSyB_j9o33tlMEEyUNx78UqZGAmOklihLkCg",
+ 7:   authDomain: "huberman-95d6d.firebaseapp.com",
+ 8:   projectId: "huberman-95d6d",
+ 9:   storageBucket: "huberman-95d6d.firebasestorage.app",
+10:   messagingSenderId: "544986799642",
+11:   appId: "1:544986799642:web:6ac6d3985c8a1249b8fba3"
+12: };
+13: const app = initializeApp(firebaseConfig);
+14: const root = ReactDOM.createRoot(document.getElementById('root'));
+15: root.render(
+16:   <React.StrictMode>
+17:     <App />
+18:   </React.StrictMode>
+19: );
+````
+
+## File: webpack.config.js
+````javascript
+ 1: const path = require('path');
+ 2: const HtmlWebpackPlugin = require('html-webpack-plugin');
+ 3: const Dotenv = require('dotenv-webpack');
+ 4: const webpack = require('webpack');
+ 5: const babelLoaderConfiguration = {
+ 6:   test: /\.(jsx?|tsx?)$/,
+ 7:   include: [
+ 8:     path.resolve(__dirname, 'src'),
+ 9:     path.resolve(__dirname, 'index.web.js'),
+10:     path.resolve(__dirname, 'node_modules/react-native'),
+11:     path.resolve(__dirname, 'node_modules/react-native-web'),
+12:     path.resolve(__dirname, 'node_modules/@react-navigation'),
+13:     path.resolve(__dirname, 'node_modules/react-native-gesture-handler'),
+14:     path.resolve(__dirname, 'node_modules/react-native-screens'),
+15:     path.resolve(__dirname, 'node_modules/react-native-safe-area-context'),
+16:     path.resolve(__dirname, 'node_modules/react-native-reanimated'),
+17:     path.resolve(__dirname, 'node_modules/@expo'),
+18:     path.resolve(__dirname, 'node_modules/expo-modules-core'),
+19:   ],
+20:   use: {
+21:     loader: 'babel-loader',
+22:     options: {
+23:       presets: ['module:@react-native/babel-preset'],
+24:       plugins: [
+25:         '@babel/plugin-proposal-export-namespace-from',
+26:       ],
+27:     },
+28:   },
+29: };
+30: const fontLoaderConfiguration = {
+31:   test: /\.ttf$/,
+32:   use: ['file-loader'],
+33: };
+34: const assetFileLoaderConfiguration = {
+35:   test: /\.(gif|jpe?g|png|svg)$/,
+36:   use: {
+37:     loader: 'url-loader',
+38:     options: {
+39:       name: '[hash].[ext]',
+40:     },
+41:   },
+42: };
+43: module.exports = {
+44:   mode: 'development',
+45:   entry: path.resolve(__dirname, 'index.web.js'),
+46:   output: {
+47:     path: path.resolve(__dirname, 'dist'),
+48:     filename: 'bundle.js',
+49:   },
+50:   devServer: {
+51:     static: path.resolve(__dirname, 'dist'),
+52:     port: 9000,
+53:   },
+54:   module: {
+55:     rules: [
+56:       babelLoaderConfiguration,
+57:       assetFileLoaderConfiguration,
+58:       fontLoaderConfiguration,
+59:       {
+60:         test: /\.css$/i,
+61:         use: ["style-loader", "css-loader"],
+62:       },
+63:     ],
+64:   },
+65:   plugins: [
+66:     new HtmlWebpackPlugin({
+67:       template: path.resolve(__dirname, 'public/index.html'),
+68:     }),
+69:     new Dotenv({
+70:             path: './.env.local',
+71:           }),
+72:           new webpack.DefinePlugin({
+73:                  __DEV__: process.env.NODE_ENV === 'development',
+74:                 }),
+75:   ],
+76:   resolve: {
+77:     alias: {
+78:       '@': path.resolve(__dirname, 'src/'),
+79:       'react-native$': 'react-native-web',
+80:       '@react-navigation/core': path.resolve(__dirname, 'node_modules/@react-navigation/core/src/index.tsx'),
+81:       '@react-navigation/native': path.resolve(__dirname, 'node_modules/@react-navigation/native/src/index.tsx'),
+82:       '@react-navigation/elements': path.resolve(__dirname, 'node_modules/@react-navigation/elements/src/index.tsx'),
+83:       '@react-navigation/native-stack': path.resolve(__dirname, 'node_modules/@react-navigation/native-stack/src/index.tsx'),
+84:       '@react-navigation/bottom-tabs': path.resolve(__dirname, 'node_modules/@react-navigation/bottom-tabs/src/index.tsx'),
+85:       '@react-navigation/routers': path.resolve(__dirname, 'node_modules/@react-navigation/routers/src/index.tsx'),
+86:       'react-native-gesture-handler': path.resolve(__dirname, 'node_modules/react-native-gesture-handler/src/index.ts'),
+87:       'react-native-screens': path.resolve(__dirname, 'node_modules/react-native-screens/src/index.tsx'),
+88:       'react-native-safe-area-context': path.resolve(__dirname, 'node_modules/react-native-safe-area-context/src/index.tsx'),
+89:     },
+90:     extensions: ['.web.tsx', '.web.ts', '.tsx', '.ts', '.web.js', '.js', '.jsx', '.json'],
+91:     mainFields: ['browser', 'module', 'main'],
+92:     fullySpecified: false,
+93:   },
+94: };
+````
+
+## File: android/app/build.gradle
+````
+  1: apply plugin: "com.android.application"
+  2: apply plugin: "org.jetbrains.kotlin.android"
+  3: apply plugin: "com.facebook.react"
+  4: apply plugin: "com.google.gms.google-services"
+  5: 
+  6: /**
+  7:  * This is the configuration block to customize your React Native Android app.
+  8:  * By default you don't need to apply any configuration, just uncomment the lines you need.
+  9:  */
+ 10: react {
+ 11:     /* Folders */
+ 12:     //   The root of your project, i.e. where "package.json" lives. Default is '../..'
+ 13:     // root = file("../../")
+ 14:     //   The folder where the react-native NPM package is. Default is ../../node_modules/react-native
+ 15:     // reactNativeDir = file("../../node_modules/react-native")
+ 16:     //   The folder where the react-native Codegen package is. Default is ../../node_modules/@react-native/codegen
+ 17:     // codegenDir = file("../../node_modules/@react-native/codegen")
+ 18:     //   The cli.js file which is the React Native CLI entrypoint. Default is ../../node_modules/react-native/cli.js
+ 19:     // cliFile = file("../../node_modules/react-native/cli.js")
+ 20: 
+ 21:     /* Variants */
+ 22:     //   The list of variants to that are debuggable. For those we're going to
+ 23:     //   skip the bundling of the JS bundle and the assets. By default is just 'debug'.
+ 24:     //   If you add flavors like lite, prod, etc. you'll have to list your debuggableVariants.
+ 25:     // debuggableVariants = ["liteDebug", "prodDebug"]
+ 26: 
+ 27:     /* Bundling */
+ 28:     //   A list containing the node command and its flags. Default is just 'node'.
+ 29:     // nodeExecutableAndArgs = ["node"]
+ 30:     //
+ 31:     //   The command to run when bundling. By default is 'bundle'
+ 32:     // bundleCommand = "ram-bundle"
+ 33:     //
+ 34:     //   The path to the CLI configuration file. Default is empty.
+ 35:     // bundleConfig = file(../rn-cli.config.js)
+ 36:     //
+ 37:     //   The name of the generated asset file containing your JS bundle
+ 38:     // bundleAssetName = "MyApplication.android.bundle"
+ 39:     //
+ 40:     //   The entry file for bundle generation. Default is 'index.android.js' or 'index.js'
+ 41:     // entryFile = file("../js/MyApplication.android.js")
+ 42:     //
+ 43:     //   A list of extra flags to pass to the 'bundle' commands.
+ 44:     //   See https://github.com/react-native-community/cli/blob/main/docs/commands.md#bundle
+ 45:     // extraPackagerArgs = []
+ 46: 
+ 47:     /* Hermes Commands */
+ 48:     //   The hermes compiler command to run. By default it is 'hermesc'
+ 49:     // hermesCommand = "$rootDir/my-custom-hermesc/bin/hermesc"
+ 50:     //
+ 51:     //   The list of flags to pass to the Hermes compiler. By default is "-O", "-output-source-map"
+ 52:     // hermesFlags = ["-O", "-output-source-map"]
+ 53: 
+ 54:     /* Autolinking */
+ 55:     autolinkLibrariesWithApp()
+ 56: }
+ 57: 
+ 58: /**
+ 59:  * Set this to true to Run Proguard on Release builds to minify the Java bytecode.
+ 60:  */
+ 61: def enableProguardInReleaseBuilds = false
+ 62: 
+ 63: /**
+ 64:  * The preferred build flavor of JavaScriptCore (JSC)
+ 65:  *
+ 66:  * For example, to use the international variant, you can use:
+ 67:  * `def jscFlavor = io.github.react-native-community:jsc-android-intl:2026004.+`
+ 68:  *
+ 69:  * The international variant includes ICU i18n library and necessary data
+ 70:  * allowing to use e.g. `Date.toLocaleString` and `String.localeCompare` that
+ 71:  * give correct results when using with locales other than en-US. Note that
+ 72:  * this variant is about 6MiB larger per architecture than default.
+ 73:  */
+ 74: def jscFlavor = 'io.github.react-native-community:jsc-android:2026004.+'
+ 75: 
+ 76: android {
+ 77:     ndkVersion rootProject.ext.ndkVersion
+ 78:     buildToolsVersion rootProject.ext.buildToolsVersion
+ 79:     compileSdk rootProject.ext.compileSdkVersion
+ 80: 
+ 81:     namespace "com.hubermanappfrontend"
+ 82:     defaultConfig {
+ 83:         applicationId "com.hubermanappfrontend"
+ 84:         minSdkVersion rootProject.ext.minSdkVersion
+ 85:         targetSdkVersion rootProject.ext.targetSdkVersion
+ 86:         versionCode 1
+ 87:         versionName "1.0"
+ 88:     }
+ 89:     signingConfigs {
+ 90:         debug {
+ 91:             storeFile file('debug.keystore')
+ 92:             storePassword 'android'
+ 93:             keyAlias 'androiddebugkey'
+ 94:             keyPassword 'android'
+ 95:         }
+ 96:     }
+ 97:     buildTypes {
+ 98:         debug {
+ 99:             signingConfig signingConfigs.debug
+100:         }
+101:         release {
+102:             // Caution! In production, you need to generate your own keystore file.
+103:             // see https://reactnative.dev/docs/signed-apk-android.
+104:             signingConfig signingConfigs.debug
+105:             minifyEnabled enableProguardInReleaseBuilds
+106:             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+107:         }
+108:     }
+109: }
+110: 
+111: dependencies {
+112:     // The version of react-native is set by the React Native Gradle Plugin
+113:     implementation("com.facebook.react:react-android")
+114: 
+115:     implementation platform('com.google.firebase:firebase-bom:32.8.0')
+116:     implementation 'com.google.firebase:firebase-messaging-ktx'
+117: 
+118:     if (hermesEnabled.toBoolean()) {
+119:         implementation("com.facebook.react:hermes-android")
+120:     } else {
+121:         implementation jscFlavor
+122:     }
+123: }
 ````
 
 ## File: src/navigation/AuthStack.tsx
@@ -9907,39 +9964,40 @@ webpack.config.js
 33:     "@babel/plugin-proposal-export-namespace-from": "^7.18.9",
 34:     "@babel/preset-env": "^7.25.3",
 35:     "@babel/runtime": "^7.25.0",
-36:     "@react-native-community/cli": "18.0.0",
-37:     "@react-native-community/cli-platform-android": "18.0.0",
-38:     "@react-native-community/cli-platform-ios": "18.0.0",
-39:     "@react-native/babel-preset": "0.79.2",
-40:     "@react-native/eslint-config": "0.79.2",
-41:     "@react-native/metro-config": "0.79.2",
-42:     "@react-native/typescript-config": "0.79.2",
-43:     "@testing-library/react-native": "^12.4.5",
-44:     "@types/jest": "^29.5.13",
-45:     "@types/react": "19.1.2",
-46:     "@types/react-native": "^0.72.8",
-47:     "@types/react-test-renderer": "^19.0.0",
-48:     "babel-loader": "^10.0.0",
-49:     "css-loader": "^7.1.2",
-50:     "eslint": "^8.19.0",
-51:     "file-loader": "^6.2.0",
-52:     "html-webpack-plugin": "^5.6.3",
-53:     "jest": "^29.6.3",
-54:     "prettier": "2.8.8",
-55:     "react-dom": "^19.1.0",
-56:     "react-native-web": "^0.20.0",
-57:     "react-test-renderer": "^19.1.0",
-58:     "style-loader": "^4.0.0",
-59:     "typescript": "5.0.4",
-60:     "url-loader": "^4.1.1",
-61:     "webpack": "^5.99.8",
-62:     "webpack-cli": "^6.0.1",
-63:     "webpack-dev-server": "^5.2.1"
-64:   },
-65:   "engines": {
-66:     "node": ">=18"
-67:   }
-68: }
+36:     "dotenv-webpack": "^8.1.0",
+37:     "@react-native-community/cli": "18.0.0",
+38:     "@react-native-community/cli-platform-android": "18.0.0",
+39:     "@react-native-community/cli-platform-ios": "18.0.0",
+40:     "@react-native/babel-preset": "0.79.2",
+41:     "@react-native/eslint-config": "0.79.2",
+42:     "@react-native/metro-config": "0.79.2",
+43:     "@react-native/typescript-config": "0.79.2",
+44:     "@testing-library/react-native": "^12.4.5",
+45:     "@types/jest": "^29.5.13",
+46:     "@types/react": "19.1.2",
+47:     "@types/react-native": "^0.72.8",
+48:     "@types/react-test-renderer": "^19.0.0",
+49:     "babel-loader": "^10.0.0",
+50:     "css-loader": "^7.1.2",
+51:     "eslint": "^8.19.0",
+52:     "file-loader": "^6.2.0",
+53:     "html-webpack-plugin": "^5.6.3",
+54:     "jest": "^29.6.3",
+55:     "prettier": "2.8.8",
+56:     "react-dom": "^19.1.0",
+57:     "react-native-web": "^0.20.0",
+58:     "react-test-renderer": "^19.1.0",
+59:     "style-loader": "^4.0.0",
+60:     "typescript": "5.0.4",
+61:     "url-loader": "^4.1.1",
+62:     "webpack": "^5.99.8",
+63:     "webpack-cli": "^6.0.1",
+64:     "webpack-dev-server": "^5.2.1"
+65:   },
+66:   "engines": {
+67:     "node": ">=18"
+68:   }
+69: }
 ````
 
 ## File: app_documentation/frontend_implementation_todo.md
