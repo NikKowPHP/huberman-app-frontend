@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "544986799642",
+    "project_id": "huberman-95d6d",
+    "storage_bucket": "huberman-95d6d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:544986799642:android:3cbfb40d755256d1b8fba3",
+        "android_client_info": {
+          "package_name": "com.lessay.protocolize"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBv9CIzO50j7up-abLcLkJ0kwtAHMxjSIM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
