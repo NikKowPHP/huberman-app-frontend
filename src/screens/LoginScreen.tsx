@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, ActivityIndicator, StyleSheet } from 'react-native';
 import CustomTextInput from '../components/TextInput';
-import useAuthStore from '../store/authStore';
+import useAuthStore from '@/store/authStore';
 import { useNavigation } from '@react-navigation/native';
 import { AuthStackNavigationProp } from '../navigation/AuthStack';
 import { useTheme } from '../theme/ThemeProvider';

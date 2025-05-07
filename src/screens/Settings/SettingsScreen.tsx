@@ -3,8 +3,8 @@ import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import Button from '../../components/Button/Button';
 import { AppStackParamList } from '../../navigation/AppStack.d';
-import useBillingStore from '../..//store/billingStore';
-import useAuthStore from '../../store/authStore'; // Assuming authStore has userId
+import useBillingStore from '@/store/billingStore';
+import useAuthStore from '@/store/authStore'; // Assuming authStore has userId
 
 type SettingsScreenNavigationProp = NavigationProp<AppStackParamList, 'Settings'>;
 

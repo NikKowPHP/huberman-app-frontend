@@ -3,7 +3,7 @@ import { ThemeProvider } from './theme/ThemeProvider';
 import messaging from '@react-native-firebase/messaging';
 import { Platform } from 'react-native';
 import RootNavigator from './navigation/RootNavigator';
-import { sendDeviceToken } from './services/api/user';
+import { sendDeviceToken } from '@/services/api/user';
 
 const App = () => {
   async function requestUserPermission() {

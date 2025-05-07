@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, FlatList, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { ProtocolStackParamList } from '../../navigation/AppStack.d';
-import { fetchProtocols, Protocol } from '../../services/api/content';
+import { fetchProtocols, Protocol } from '@/services/api/content';
 import { FontAwesome } from '@expo/vector-icons';
 import { useTheme } from '../../theme/ThemeProvider';
 

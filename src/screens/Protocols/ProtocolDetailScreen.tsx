@@ -6,9 +6,9 @@ import { NativeStackNavigationProp, NativeStackScreenProps } from '@react-naviga
 import { useNavigation } from '@react-navigation/native';
 import { ProtocolStackParamList } from '../../navigation/AppStack.d';
 import { useTheme } from '../../theme/ThemeProvider';
-import { fetchProtocolDetails, ProtocolDetail } from '../../services/api/content';
-import useAuthStore from '../../store/authStore';
-import useBillingStore from '../../store/billingStore';
+import { fetchProtocolDetails, ProtocolDetail } from '@/services/api/content';
+import useAuthStore from '@/store/authStore';
+import useBillingStore from '@/store/billingStore';
 import UpgradePrompt from '../../components/UpgradePrompt';
 
 type Props = NativeStackScreenProps<ProtocolStackParamList, 'ProtocolDetail'>;

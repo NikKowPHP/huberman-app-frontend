@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, Button, StyleSheet, Alert } from 'react-native';
 import CustomTextInput from '../components/TextInput';
-import { forgotPassword } from '../services/api/auth';
+import { forgotPassword } from '@/services/api/auth';
 
 const ForgotPasswordScreen = () => {
   const [email, setEmail] = useState('');

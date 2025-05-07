@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, StyleSheet } from 'react-native';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
-import useAuth from '../../store/authStore';
-import { getNotes } from '../../services/api/notes';
+import useAuth from '@/store/authStore';
+import { getNotes } from '@/services/api/notes';
 import { Note } from '../../types/note';
 import { RootStackParamList } from '../../navigation/RootNavigator.d';
 import { useTheme } from '../../theme/ThemeProvider';
