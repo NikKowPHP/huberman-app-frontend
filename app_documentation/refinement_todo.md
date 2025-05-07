@@ -37,9 +37,9 @@ This list incorporates the identified gaps and areas needing further work to ach
 [x] Write Test File Structure: Create the necessary *.test.tsx files for major screens and components. Add basic Jest describe and it blocks as placeholders for future test implementation.
 [x] Set up Mocking: Configure Jest setup files (jest.setup.js if needed) to mock native modules (react-native-keychain, @react-native-firebase/messaging, react-native-iap) and potentially global fetch/axios for predictable testing later.
 5. Refinement & Productionization (Code Review & Setup):
-[ ] Accessibility (A11y) Props: Review component code and add missing accessibilityLabel, accessibilityHint, accessibilityRole props to all interactive elements based on their function.
-[ ] Performance Code Review: Statically review code for potential performance issues (e.g., unnecessary re-renders, large list rendering without optimization like FlatList, heavy computations on the main thread). Add comments (// TODO: Optimize) for areas needing profiling later.
-[ ] Static Styling & Design Review: Compare component code styles (StyleSheet.create) against Figma specifications or the defined theme (src/theme/theme.ts). Ensure consistent use of theme variables (colors, spacing, typography). This is a static code review, not a visual check.
+[x] Accessibility (A11y) Props: Review component code and add missing accessibilityLabel, accessibilityHint, accessibilityRole props to all interactive elements based on their function.
+[x] Performance Code Review: Statically review code for potential performance issues (e.g., unnecessary re-renders, large list rendering without optimization like FlatList, heavy computations on the main thread). Add comments (// TODO: Optimize) for areas needing profiling later.
+[x] Static Styling & Design Review: Compare component code styles (StyleSheet.create) against Figma specifications or the defined theme (src/theme/theme.ts). Ensure consistent use of theme variables (colors, spacing, typography). This is a static code review, not a visual check.
 [ ] Code Cleanup: Remove console.log statements, commented-out code blocks, and unused variables/imports. Ensure consistent code formatting (run Prettier). Add clarifying code comments where logic is complex.
 [ ] Integrate Crash Reporting SDK: Add the necessary initialization code for Sentry/Bugsnag SDK (e.g., in App.tsx or entry point) according to their documentation.
 6. Build & Deployment Configuration:
