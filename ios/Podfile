@@ -34,5 +34,13 @@ target 'hubermanAppFrontend' do
       :mac_catalyst_enabled => false,
       # :ccache_enabled => true
     )
+
+    # Disable non-modular include warning treated as error for all pods
+    installer.pods_project.targets.each do |target|
+      target.build_configurations.each do |config|
+        # Allows including non-modular headers from framework modules
+        config.build_settings['CLANG_WARN_NON_MODULAR_INCLUDE_IN_FRAMEWORK_MODULE'] = 'NO'
+      end
+    end
   end
 end
